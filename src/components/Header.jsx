@@ -13,10 +13,12 @@ export const Header = () => {
             <button className="btn-header-login">Login</button>
           </Link>
           <Link to="/wishlist" className="link-wishlist">
-            <AiFillHeart />
+            <AiFillHeart className="link-wishlist-a" />
+            <span className="badge" value="6"></span>
           </Link>
           <Link to="/cart" className="link-cart">
             <AiOutlineShoppingCart />
+            <span className="badge" value="5"></span>
           </Link>
         </div>
       </nav>

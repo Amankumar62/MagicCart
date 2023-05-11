@@ -13,6 +13,18 @@ a {
   font-weight: 600;
   color: #000;
 }
+.badge {
+  content: attr(value);
+  position: relative;
+  font-size: 5px;
+  top: -22px;
+  padding: 3px;
+  right: 5px;
+  background-color: red;
+}
+.badge::after {
+  content: attr(value);
+}
 .header-name {
   color: #fff;
   letter-spacing: 1px;
@@ -49,6 +61,9 @@ a .btn-header-login {
 .link-wishlist {
   margin: 0 5px;
   padding: 5px 10px;
+}
+.link-wishlist-a {
+  z-index: 99;
 }
 
 .link-cart {
