@@ -3,23 +3,48 @@ nav {
   top: 0;
   width: 100%;
   display: flex;
-  background-color: var(--item-color);
+  background-color: var(--secondary-color);
   padding: 10px;
   justify-content: space-around;
 }
 a {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 600;
+  color: #000;
 }
+.header-name {
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px var(--ternary-color);
+}
+.search-input {
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  width: 300px;
+  font-size: 16px;
+  outline: none;
+}
+.search-input:focus::placeholder {
+  color: transparent;
+}
+
 .header-links {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 3px;
 }
 .btn-header-login {
   margin: 0 5px;
-  padding: 5px 20px;
+  padding: 7px 20px;
+  border: none;
+  background-color: #15803d;
+  border-radius: 8px;
+}
+a .btn-header-login {
+  color: #fff;
+  font-size: 18px;
 }
 .link-wishlist {
   margin: 0 5px;

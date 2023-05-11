@@ -1,25 +1,22 @@
 import { Link } from "react-router-dom";
+import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
 import Home from "./Header.css";
 
 export const Header = () => {
   return (
     <>
       <nav>
-        <h1 className="header-name">Header</h1>
-        <input
-          className="search-input"
-          type="text"
-          placeholder="seacrh-icon Search"
-        />
+        <h1 className="header-name">MagicCart</h1>
+        <input className="search-input" type="text" placeholder="🔍 Search" />
         <div className="header-links">
-          <button className="btn-header-login">
-            <Link to="/login">Login</Link>
-          </button>
+          <Link to="/login">
+            <button className="btn-header-login">Login</button>
+          </Link>
           <Link to="/wishlist" className="link-wishlist">
-            Wishlist
+            <AiFillHeart />
           </Link>
           <Link to="/cart" className="link-cart">
-            Cart
+            <AiOutlineShoppingCart />
           </Link>
         </div>
       </nav>
