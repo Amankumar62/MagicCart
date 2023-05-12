@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./Home";
-import { Products } from "./Products";
-import { Cart } from "./Cart";
-import { Wishlist } from "./Wishlist";
-import { Login } from "./Login";
-import { Signup } from "./Signup";
-import { Checkout } from "./Checkout";
+import { Home } from "./Pages/Home";
+import { Products } from "./Pages/Products";
+import { Cart } from "./Pages/Cart";
+import { Wishlist } from "./Pages/Wishlist";
+import { Login } from "./Pages/Login";
+import { Signup } from "./Pages/Signup";
+import { Checkout } from "./Pages/Checkout";
 import { Header } from "./components/Header";
 import "./App.css";
 
