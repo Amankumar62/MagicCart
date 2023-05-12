@@ -1,0 +1,30 @@
+.product-image {
+  width: inherit;
+  height: 70%;
+}
+span {
+  margin-top: 3px;
+}
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px;
+}
+.product-name {
+  font-size: 14px;
+}
+.product-price {
+  font-weight: 800;
+}
+.product-price::before {
+  content: "\20B9";
+}
+.btn-cart {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 5px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 2px;
+}

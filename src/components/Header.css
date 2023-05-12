@@ -6,6 +6,7 @@ nav {
   background-color: var(--secondary-color);
   padding: 10px;
   justify-content: space-around;
+  z-index: 999;
 }
 a {
   text-decoration: none;
@@ -33,7 +34,7 @@ a {
 .search-input {
   padding: 5px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 300px;
   font-size: 16px;
   outline: none;
