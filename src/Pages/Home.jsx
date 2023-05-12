@@ -1,7 +1,3 @@
 export const Home = () => {
-  return (
-    <>
-      <img src={require("../Images/banner_image_1.png")} />
-    </>
-  );
+  return <>{/* <img src={require("../Images/banner_image_1.png")} /> */}</>;
 };
