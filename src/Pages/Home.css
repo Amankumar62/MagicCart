@@ -1,0 +1,28 @@
+img {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+section {
+  margin: 8rem auto;
+  text-align: center;
+  width: 90%;
+}
+.offers {
+  width: 80%;
+}
+.offers li {
+  flex-grow: 1;
+}
+ul {
+  display: flex;
+  justify-content: space-around;
+}
+li {
+  width: 200px;
+  background-color: aquamarine;
+  height: 200px;
+  list-style: none;
+  margin: 1.2rem;
+  border-radius: 5px;
+}
