@@ -1,6 +1,8 @@
 .product-image {
   width: inherit;
   height: 70%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 span {
   margin-top: 3px;
@@ -10,6 +12,7 @@ span {
   flex-direction: column;
   text-align: center;
   padding: 5px;
+  margin-top: -25px;
 }
 .product-name {
   font-size: 14px;
@@ -27,4 +30,16 @@ span {
   color: #fff;
   font-weight: 600;
   margin-top: 2px;
+}
+.btn-wishlist {
+  position: relative;
+  transform: translate(175px, -195px);
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+}
+.btn-wishlist-icon {
+  border: 1px solid #fff;
+  background-color: #fff;
+  border-radius: 50%;
 }

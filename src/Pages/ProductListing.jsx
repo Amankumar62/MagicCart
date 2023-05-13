@@ -1,15 +1,14 @@
 import "./ProductListing.css";
+import { Filter } from "../components/Filter";
 import { ProductCard } from "../components/ProductCard";
 export const ProductListing = () => {
   return (
     <>
       <aside>
-        <form>
-          <h3>Filters</h3>
-        </form>
+        <Filter />
       </aside>
       <section className="listing">
-        <h3>
+        <h3 className="listing-heading">
           Showing All products
           <span className="product-count"> ( Showing 20 products )</span>
         </h3>

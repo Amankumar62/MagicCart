@@ -1,0 +1,20 @@
+.filter-form {
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-header button {
+  text-decoration: underline;
+  background-color: #fff;
+  border: none;
+  font-size: 16px;
+}
+.range-label {
+  display: flex;
+  justify-content: space-between;
+}
