@@ -8,6 +8,7 @@ import { Signup } from "./Pages/Signup";
 import { Checkout } from "./Pages/Checkout";
 import { Header } from "./components/Header";
 import "./App.css";
+import { MockAPI } from "./Pages/MockMan";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/mockman" element={<MockAPI />} />
       </Routes>
     </div>
   );
