@@ -1,0 +1,30 @@
+.cart-detail {
+  display: flex;
+  margin: 2rem auto;
+  width: 80%;
+  gap: 1rem;
+}
+.cart-heading {
+  text-align: center;
+  margin-top: 6rem;
+}
+.product-card-landscape-list {
+  width: 50%;
+}
+
+.product-card-landscape-list li {
+  height: 250px;
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+.price-card {
+  width: 40%;
+  padding: 0.9rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
