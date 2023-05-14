@@ -12,7 +12,7 @@ export const ProductListing = () => {
           Showing All products
           <span className="product-count"> ( Showing 20 products )</span>
         </h3>
-        <ul>
+        <ul className="product-card-li">
           <li>
             <ProductCard />
           </li>

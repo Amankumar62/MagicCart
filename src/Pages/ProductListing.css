@@ -14,7 +14,7 @@ ul {
   gap: 2rem;
   margin-top: 1rem;
 }
-li {
+.product-card-li li {
   width: 200px;
   height: 280px;
   background-color: aliceblue;

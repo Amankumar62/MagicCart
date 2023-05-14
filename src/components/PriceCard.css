@@ -1,0 +1,32 @@
+.price-detail-list {
+  display: flex;
+  flex-direction: column;
+}
+.price-detail-list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-detail-list li span:first-of-type {
+  font-weight: 600;
+}
+.total-price {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.saving-info {
+  font-size: 1.2rem;
+}
+.btn-place-order {
+  padding: 0.5rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.price::before {
+  content: "\20B9";
+}
