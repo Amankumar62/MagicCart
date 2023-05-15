@@ -1,24 +1,38 @@
-img {
+.landing-image {
   display: block;
   width: 80%;
   margin: 0 auto;
 }
-section {
+.category {
   margin: 8rem auto;
   text-align: center;
   width: 90%;
 }
 .offers {
   width: 80%;
+  text-align: center;
+  margin: 8rem auto;
 }
 .offers li {
   flex-grow: 1;
 }
-ul {
+.landing-ul {
   display: flex;
   justify-content: space-around;
 }
-li {
+.landing-ul li {
+  width: 200px;
+  background-color: aquamarine;
+  height: 200px;
+  list-style: none;
+  margin: 1.2rem;
+  border-radius: 5px;
+}
+.landing-offer-ul {
+  display: flex;
+  justify-content: space-around;
+}
+.landing-offer-ul li {
   width: 200px;
   background-color: aquamarine;
   height: 200px;

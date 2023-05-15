@@ -4,17 +4,17 @@ export const Home = () => {
     <>
       <section className="category">
         <h2>Categories</h2>
-        <ul>
+        <ul className="landing-ul">
           <li>Mens</li>
           <li>Women</li>
           <li>Kids</li>
           <li>accessories</li>
         </ul>
       </section>
-      <img src={require("../Images/3588601.jpg")} />
+      <img className="landing-image" src={require("../Images/3588601.jpg")} />
       <section className="offers">
         <h2>Offers</h2>
-        <ul>
+        <ul className="landing-offer-ul">
           <li>10%</li>
           <li>20%</li>
         </ul>
