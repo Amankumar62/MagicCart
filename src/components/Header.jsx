@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
+import { AuthContext } from "../Context/AuthContext";
 import Home from "./Header.css";
+import { useContext } from "react";
 
 export const Header = () => {
+  const { checkLogin } = useContext(AuthContext);
   return (
     <>
       <nav>

@@ -8,22 +8,22 @@ export const Wishlist = () => {
         <h2 className="wishlist-heading">My Wishlist</h2>
         <ul className="wishlist-product-listing">
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
           <li>
-            <ProductCard page={"wishlist"} />
+            <ProductCard />
           </li>
         </ul>
       </div>

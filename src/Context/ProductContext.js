@@ -17,7 +17,6 @@ export const ProductProvider = ({ children }) => {
     categories: [],
     products: [],
   });
-  console.log(productData);
   const getProductData = async () => {
     try {
       const categoryData = await (await fetch("/api/categories")).json();
