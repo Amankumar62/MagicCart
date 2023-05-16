@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import "./ProductListing.css";
 import { Filter } from "../components/Filter";
 import { ProductCard } from "../components/ProductCard";
+import { ProductContext } from "../Context/ProductContext";
 export const ProductListing = () => {
+  const { products } = useContext(ProductContext);
+
   return (
     <>
       <aside>
@@ -13,24 +17,11 @@ export const ProductListing = () => {
           <span className="product-count"> ( Showing 20 products )</span>
         </h3>
         <ul className="product-card-li">
-          <li>
-            <ProductCard />
-          </li>
-          <li>
-            <ProductCard />
-          </li>
-          <li>
-            <ProductCard />
-          </li>
-          <li>
-            <ProductCard />
-          </li>
-          <li>
-            <ProductCard />
-          </li>
-          <li>
-            <ProductCard />
-          </li>
+          {products.map((product) => (
+            <li key={product._id}>
+              <ProductCard product={product} />
+            </li>
+          ))}
         </ul>
       </section>
     </>

@@ -1,14 +1,24 @@
+import { useContext } from "react";
 import "./Home.css";
+import { ProductContext } from "../Context/ProductContext";
 export const Home = () => {
+  const { categories } = useContext(ProductContext);
   return (
     <>
       <section className="category">
-        <h2>Categories</h2>
+        <h2>CATEGORIES TO BAG</h2>
         <ul className="landing-ul">
-          <li>Mens</li>
-          <li>Women</li>
-          <li>Kids</li>
-          <li>accessories</li>
+          {categories.map(
+            ({ _id, categoryName, description, categoryImage }) => (
+              <li
+                key={_id}
+                style={{ backgroundImage: `url(${categoryImage})` }}
+              >
+                <h2>{categoryName}</h2>
+                <p>Check out our {description}</p>
+              </li>
+            )
+          )}
         </ul>
       </section>
       <img className="landing-image" src={require("../Images/3588601.jpg")} />
