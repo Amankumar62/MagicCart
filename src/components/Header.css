@@ -7,10 +7,22 @@ nav {
   padding: 10px;
   justify-content: space-around;
   z-index: 999;
+  border-bottom-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
 }
-a {
+.header-name {
+  margin-top: 0.5rem;
+}
+.header-name-a {
   text-decoration: none;
-  font-size: 25px;
+  text-shadow: 3px 3px var(--ternary-color);
+  letter-spacing: 1px;
+  color: #fff;
+}
+.header-links a {
+  text-decoration: none;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #000;
 }
@@ -19,18 +31,16 @@ a {
   position: relative;
   font-size: 5px;
   top: -22px;
-  padding: 3px;
+  padding: 0.3rem;
   right: 5px;
   background-color: red;
+  border-radius: 50%;
+  color: #fff;
 }
 .badge::after {
   content: attr(value);
 }
-.header-name {
-  color: #fff;
-  letter-spacing: 1px;
-  text-shadow: 3px 3px var(--ternary-color);
-}
+
 .search-input {
   padding: 5px;
   border: none;

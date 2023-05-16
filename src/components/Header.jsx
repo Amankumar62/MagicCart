@@ -6,7 +6,11 @@ export const Header = () => {
   return (
     <>
       <nav>
-        <h1 className="header-name">MagicCart</h1>
+        <h1 className="header-name">
+          <Link className="header-name-a" to="/">
+            MagicCart
+          </Link>
+        </h1>
         <input className="search-input" type="text" placeholder="🔍 Search" />
         <div className="header-links">
           <Link to="/login">

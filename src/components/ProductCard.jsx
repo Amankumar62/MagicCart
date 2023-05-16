@@ -1,6 +1,9 @@
 import "./ProductCard.css";
 import { AiTwotoneHeart } from "react-icons/ai";
-export const ProductCard = () => {
+export const ProductCard = ({ message }) => {
+  // const getButtonMessage = () =>{
+  //   if(message === "")
+  // }
   return (
     <>
       <img
@@ -14,7 +17,8 @@ export const ProductCard = () => {
       <section className="product-detail">
         <span className="product-name">Men Premium Jacket</span>
         <span className="product-price">2000</span>
-        <button className="btn-cart">Go to Cart</button>
+
+        <button className="btn-cart">Add to Cart</button>
       </section>
     </>
   );
