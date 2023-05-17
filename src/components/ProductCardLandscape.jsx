@@ -3,7 +3,8 @@ import "./ProductCardLandscape.css";
 import { CartContext } from "../Context/CartContext";
 export const ProductCardLandscape = ({ product }) => {
   const { title, image, discounted_price, price } = product;
-  const { removeFromCart } = useContext(CartContext);
+  const { removeFromCart, addToWishList, updateQuantityCart } =
+    useContext(CartContext);
   return (
     <>
       <img
@@ -21,9 +22,21 @@ export const ProductCardLandscape = ({ product }) => {
         <div className="product-detail-landscape-quantity">
           <label htmlFor="quantity">Quantity:</label>
           <span>
-            <button>-</button>
-            <input type="text" name="quantity" disabled={true} value="1" />
-            <button>+</button>
+            <button
+              onClick={() => updateQuantityCart(product, "decrement")}
+              disabled={product.qty === 1}
+            >
+              -
+            </button>
+            <input
+              type="text"
+              name="quantity"
+              disabled={true}
+              value={product.qty}
+            />
+            <button onClick={() => updateQuantityCart(product, "increment")}>
+              +
+            </button>
           </span>
         </div>
         <button
@@ -32,7 +45,10 @@ export const ProductCardLandscape = ({ product }) => {
         >
           Remove From Cart
         </button>
-        <button className="product-detail-landscape-btn-wishlist">
+        <button
+          onClick={() => addToWishList(product)}
+          className="product-detail-landscape-btn-wishlist"
+        >
           Move to Wishlist
         </button>
       </section>

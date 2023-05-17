@@ -8,6 +8,24 @@ const cartReducer = (prevState, { type, payload }) => {
       return { ...prevState, cart: [...payload] };
     case "ADD_TO_WISHLIST":
       return { ...prevState, wishlist: [...payload] };
+    case "INCREMENT_CART":
+      return {
+        ...prevState,
+        cart: prevState.cart.map((product) =>
+          product._id === payload._id
+            ? { ...product, qty: product.qty + 1 }
+            : product
+        ),
+      };
+    case "DECREMENT_CART":
+      return {
+        ...prevState,
+        cart: prevState.cart.map((product) =>
+          product._id === payload._id
+            ? { ...product, qty: product.qty - 1 }
+            : product
+        ),
+      };
     default:
       return prevState;
   }
@@ -144,11 +162,21 @@ export const CartProvider = ({ children }) => {
       });
       if (response.status === 200) {
         const data = await response.json();
-        dispatch({ type: "ADD_TO_CART", payload: data.cart });
+        console.log(data);
+        userAction === "increment"
+          ? dispatch({ type: "INCREMENT_CART", payload: userProduct })
+          : dispatch({ type: "DECREMENT_CART", payload: userProduct });
       }
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const getCartCount = () => {
+    return cartData.cart.length;
+  };
+  const getWishlistCount = () => {
+    return cartData.wishlist.length;
   };
 
   useEffect(() => {
@@ -163,6 +191,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         removeFromWishlist,
         updateQuantityCart,
+        getCartCount,
+        getWishlistCount,
         cart: cartData.cart,
         wishlist: cartData.wishlist,
       }}
