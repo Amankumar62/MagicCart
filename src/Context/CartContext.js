@@ -54,14 +54,18 @@ export const CartProvider = ({ children }) => {
           headers: auth,
         })
       ).json();
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: responseCart.cart,
-      });
-      dispatch({
-        type: "ADD_TO_WISHLIST",
-        payload: responseWishlist.wishlist,
-      });
+      if (responseCart.status === 200) {
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: responseCart.cart,
+        });
+      }
+      if (responseWishlist.status === 200) {
+        dispatch({
+          type: "ADD_TO_WISHLIST",
+          payload: responseWishlist.wishlist,
+        });
+      }
     } catch (err) {
       console.error(err);
     }
