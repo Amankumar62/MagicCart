@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const checkLogin = () => {
-    return userData.isLoggedIn;
+    return userData.isLoggedIn && localStorage.getItem("token") !== null;
   };
   return (
     <AuthContext.Provider value={{ setLoginSuccess, checkLogin }}>

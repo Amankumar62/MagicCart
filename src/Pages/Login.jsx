@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
   const { setLoginSuccess } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const authenticateUser = async (event, email, password) => {
     event.preventDefault();
     try {
@@ -22,6 +22,7 @@ export const Login = () => {
         const responseData = await response.json();
         setLoginSuccess(responseData);
         localStorage.setItem("token", responseData.encodedToken);
+        navigate(-1);
       }
     } catch (err) {
       console.error(err);
