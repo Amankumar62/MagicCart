@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
-import Home from "./Header.css";
+import "./Header.css";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
+import { AuthContext } from "../Context/AuthContext";
 
 export const Header = () => {
+  const { checkLogin } = useContext(AuthContext);
+  const { getCartCount, getWishlistCount } = useContext(CartContext);
   return (
     <>
       <nav>
@@ -13,16 +18,37 @@ export const Header = () => {
         </h1>
         <input className="search-input" type="text" placeholder="🔍 Search" />
         <div className="header-links">
+          <Link to="/products">
+            <button
+              style={{ display: checkLogin() ? "" : "none" }}
+              className="btn-header-login"
+            >
+              Explore
+            </button>
+          </Link>
           <Link to="/login">
-            <button className="btn-header-login">Login</button>
+            <button
+              style={{ display: checkLogin() ? "none" : "" }}
+              className="btn-header-login"
+            >
+              Login
+            </button>
           </Link>
           <Link to="/wishlist" className="link-wishlist">
             <AiFillHeart className="link-wishlist-a" />
-            <span className="badge" value="6"></span>
+            <span
+              style={{ display: getWishlistCount() === 0 ? "none" : "" }}
+              className="badge"
+              value={getWishlistCount()}
+            ></span>
           </Link>
           <Link to="/cart" className="link-cart">
             <AiOutlineShoppingCart />
-            <span className="badge" value="5"></span>
+            <span
+              style={{ display: getCartCount() === 0 ? "none" : "" }}
+              className="badge"
+              value={getCartCount()}
+            ></span>
           </Link>
         </div>
       </nav>

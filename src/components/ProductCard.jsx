@@ -1,24 +1,31 @@
+import { useContext } from "react";
 import "./ProductCard.css";
 import { AiTwotoneHeart } from "react-icons/ai";
-export const ProductCard = ({ message }) => {
-  // const getButtonMessage = () =>{
-  //   if(message === "")
-  // }
+import { CartContext } from "../Context/CartContext";
+import { AuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router";
+
+export const ProductCard = ({ product }) => {
+  const { addToCart, addToWishList } = useContext(CartContext);
+  const { checkLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const authCheck = (product) => {
+    console.log(checkLogin());
+    checkLogin() ? addToCart(product) : navigate("/login");
+  };
   return (
     <>
-      <img
-        className="product-image"
-        src="https://rukminim1.flixcart.com/image/612/612/k66sh3k0/jacket/a/k/u/m-9587613-roadster-original-imafzpbv8smzbquw.jpeg?q=70"
-        alt="pro banner"
-      />
-      <button className="btn-wishlist">
+      <img className="product-image" src={product.image} alt="pro banner" />
+      <button onClick={() => addToWishList(product)} className="btn-wishlist">
         <AiTwotoneHeart className="btn-wishlist-icon" />
       </button>
       <section className="product-detail">
-        <span className="product-name">Men Premium Jacket</span>
-        <span className="product-price">2000</span>
+        <span className="product-name">{product.title}</span>
+        <span className="product-price">{product.discounted_price}</span>
 
-        <button className="btn-cart">Add to Cart</button>
+        <button onClick={() => authCheck(product)} className="btn-cart">
+          Add to Cart
+        </button>
       </section>
     </>
   );
