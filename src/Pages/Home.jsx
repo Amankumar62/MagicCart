@@ -24,18 +24,13 @@ export const Home = () => {
           )}
         </ul>
       </section>
-      <img
-        className="landing-image"
-        alt="landing"
-        src={require("../Images/3588601.jpg")}
-      />
-      <section className="offers">
-        <h2>Offers</h2>
-        <ul className="landing-offer-ul">
-          <li>10%</li>
-          <li>20%</li>
-        </ul>
-      </section>
+      <div className="landing-image-container">
+        <img
+          className="landing-image"
+          alt="landing"
+          src={require("../Images/3588601.jpg")}
+        />
+      </div>
     </>
   );
 };

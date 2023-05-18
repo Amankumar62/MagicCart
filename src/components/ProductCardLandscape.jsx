@@ -3,8 +3,12 @@ import "./ProductCardLandscape.css";
 import { CartContext } from "../Context/CartContext";
 export const ProductCardLandscape = ({ product }) => {
   const { title, image, discounted_price, price } = product;
-  const { removeFromCart, addToWishList, updateQuantityCart } =
-    useContext(CartContext);
+  const {
+    removeFromCart,
+    toggleWishlist,
+    updateQuantityCart,
+    isProductInWihlist,
+  } = useContext(CartContext);
   return (
     <>
       <img
@@ -46,10 +50,15 @@ export const ProductCardLandscape = ({ product }) => {
           Remove From Cart
         </button>
         <button
-          onClick={() => addToWishList(product)}
+          onClick={() => toggleWishlist(product)}
+          style={{
+            backgroundColor: isProductInWihlist(product._id) ? "#666" : "",
+          }}
           className="product-detail-landscape-btn-wishlist"
         >
-          Move to Wishlist
+          {isProductInWihlist(product._id)
+            ? "Added to Wishlist"
+            : "Move to Wishlist"}
         </button>
       </section>
     </>

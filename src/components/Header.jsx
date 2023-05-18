@@ -1,13 +1,27 @@
-import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
+import { Link, NavLink } from "react-router-dom";
+import {
+  AiOutlineShoppingCart,
+  AiFillHeart,
+  AiOutlineLogout,
+} from "react-icons/ai";
 import "./Header.css";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Header = () => {
-  const { checkLogin } = useContext(AuthContext);
+  const { checkLogin, logoutHandler } = useContext(AuthContext);
   const { getCartCount, getWishlistCount } = useContext(CartContext);
+  const getActiveWishlist = ({ isActive }) => {
+    return {
+      color: isActive && "#991b1b",
+    };
+  };
+  const getActiveCart = ({ isActive }) => {
+    return {
+      color: isActive && "#15803d",
+    };
+  };
   return (
     <>
       <nav>
@@ -34,22 +48,38 @@ export const Header = () => {
               Login
             </button>
           </Link>
-          <Link to="/wishlist" className="link-wishlist">
+
+          <NavLink
+            style={getActiveWishlist}
+            to="/wishlist"
+            className="link-wishlist"
+          >
             <AiFillHeart className="link-wishlist-a" />
             <span
-              style={{ display: getWishlistCount() === 0 ? "none" : "" }}
+              style={{
+                display: getWishlistCount() === 0 || checkLogin() ? "none" : "",
+              }}
               className="badge"
               value={getWishlistCount()}
             ></span>
-          </Link>
-          <Link to="/cart" className="link-cart">
+          </NavLink>
+          <NavLink style={getActiveCart} to="/cart" className="link-cart">
             <AiOutlineShoppingCart />
             <span
-              style={{ display: getCartCount() === 0 ? "none" : "" }}
+              style={{
+                display: getCartCount() === 0 || !checkLogin() ? "none" : "",
+              }}
               className="badge"
               value={getCartCount()}
             ></span>
-          </Link>
+          </NavLink>
+          <button
+            style={{ display: checkLogin() ? "" : "none" }}
+            className="btn-header-logout"
+            onClick={() => logoutHandler()}
+          >
+            <AiOutlineLogout className="btn-header-logout-icon" />
+          </button>
         </div>
       </nav>
     </>

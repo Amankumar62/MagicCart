@@ -4,6 +4,12 @@
 .wishlist-heading {
   text-align: center;
 }
+.empty-wishlist {
+  text-align: center;
+  color: #aaa;
+  font-size: 1.5rem;
+  margin-top: 3rem;
+}
 .wishlist-product-listing {
   padding: 1rem;
   display: flex;
@@ -13,7 +19,7 @@
 }
 .wishlist-product-listing li {
   width: 200px;
-  height: 280px;
+  height: 320px;
   background-color: aliceblue;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);

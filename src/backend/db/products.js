@@ -44,7 +44,7 @@ export const products = [
     discounted_price: "399",
     category_name: "Men",
     size: "L",
-    availability: true,
+    availability: false,
     delivery_time: "7",
     rating: "4.5",
   },
