@@ -145,7 +145,7 @@ export const CartProvider = ({ children }) => {
 
       if (response.status === 200) {
         const data = await response.json();
-        dispatch({ type: "ADD_TO_WISHLIST", payload: data.cart });
+        dispatch({ type: "ADD_TO_WISHLIST", payload: data.wishlist });
       }
     } catch (err) {
       console.error(err);
@@ -183,6 +183,36 @@ export const CartProvider = ({ children }) => {
     return cartData.wishlist.length;
   };
 
+  const getTotalPrice = () => {
+    return cartData.cart.reduce(
+      (acc, { discounted_price, qty }) => acc + Number(discounted_price) * qty,
+      0
+    );
+  };
+
+  const getTotalDiscount = () => {
+    return (
+      cartData.cart.reduce(
+        (acc, { price, qty }) => acc + Number(price) * qty,
+        0
+      ) - getTotalPrice()
+    );
+  };
+
+  const isProductInCart = (productId) => {
+    return cartData.cart.find(({ _id }) => _id === productId);
+  };
+
+  const isProductInWihlist = (productId) => {
+    return cartData.wishlist.find(({ _id }) => _id === productId);
+  };
+
+  const toggleWishlist = (userProduct) => {
+    isProductInWihlist(userProduct._id)
+      ? removeFromWishlist(userProduct)
+      : addToWishList(userProduct);
+  };
+
   useEffect(() => {
     getCartData();
   }, []);
@@ -196,7 +226,12 @@ export const CartProvider = ({ children }) => {
         removeFromWishlist,
         updateQuantityCart,
         getCartCount,
+        toggleWishlist,
         getWishlistCount,
+        getTotalPrice,
+        getTotalDiscount,
+        isProductInCart,
+        isProductInWihlist,
         cart: cartData.cart,
         wishlist: cartData.wishlist,
       }}

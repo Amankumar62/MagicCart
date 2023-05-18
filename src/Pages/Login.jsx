@@ -1,34 +1,16 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
-  const { setLoginSuccess } = useContext(AuthContext);
+  const { checkLogin, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const authenticateUser = async (event, email, password) => {
-    event.preventDefault();
-    try {
-      const data = {
-        email: email,
-        password: password,
-      };
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      console.log(response.status);
-      if (response.status === 200) {
-        const responseData = await response.json();
-        setLoginSuccess(responseData);
-        localStorage.setItem("token", responseData.encodedToken);
-        navigate(-1);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+  const location = useLocation();
+  if (checkLogin()) {
+    console.log(location?.state?.pathname);
+    navigate(location?.state?.pathname);
+  }
   return (
     <>
       <form
@@ -51,6 +33,7 @@ export const Login = () => {
           placeholder="example@gmail.com"
           id="userEmail"
           pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          required={true}
         />
         <label className="login-label" htmlFor="userPassword">
           Password
@@ -60,6 +43,7 @@ export const Login = () => {
           type="password"
           placeholder="**********"
           id="userPassword"
+          required={true}
         />
         <button type="submit" className="login-button">
           Login

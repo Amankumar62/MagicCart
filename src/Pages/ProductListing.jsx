@@ -14,7 +14,9 @@ export const ProductListing = () => {
       <section className="listing">
         <h3 className="listing-heading">
           Showing All products
-          <span className="product-count"> ( Showing 20 products )</span>
+          <span className="product-count">
+            ( Showing {products.length} products )
+          </span>
         </h3>
         <ul className="product-card-li">
           {products.map((product) => (

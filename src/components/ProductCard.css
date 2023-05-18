@@ -1,16 +1,17 @@
 .product-image {
   width: inherit;
-  height: 70%;
+  height: 60%;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  cursor: pointer;
 }
 span {
-  margin-top: 3px;
+  margin-top: 0.3rem;
 }
 .product-detail {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: start;
   padding: 5px;
   margin-top: -25px;
 }
@@ -23,17 +24,42 @@ span {
 .product-price::before {
   content: "\20B9";
 }
+.product-size {
+  position: relative;
+  top: -2.2rem;
+  right: -6.9rem;
+  background-color: yellow;
+  padding: 0.25rem;
+  font-weight: 800;
+}
+.actual-price {
+  margin-left: 0.3rem;
+  color: #666;
+  text-decoration: line-through;
+}
+.actual-price::before {
+  content: "\20B9";
+}
+.product-rating {
+  position: relative;
+  top: -2.1rem;
+  background-color: #fff;
+  left: -1.5rem;
+  padding: 0.3rem;
+  font-weight: 600;
+  color: var(--item-color);
+}
 .btn-cart {
   background-color: var(--primary-color);
   border: none;
   padding: 5px;
   color: #fff;
   font-weight: 600;
-  margin-top: 2px;
+  margin-top: 0.5rem;
 }
 .btn-wishlist {
   position: relative;
-  transform: translate(175px, -195px);
+  transform: translate(11.5rem, -12.7rem);
   font-size: 20px;
   border: none;
   background-color: transparent;
@@ -42,4 +68,5 @@ span {
   border: 1px solid #fff;
   background-color: #fff;
   border-radius: 50%;
+  font-size: 1.5rem;
 }

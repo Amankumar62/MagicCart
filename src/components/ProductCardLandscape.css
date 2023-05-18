@@ -52,7 +52,7 @@
   padding: 0.4rem;
   border: none;
   font-weight: 600;
-  background-color: #999;
+  background-color: rgba(255, 0, 0, 0.9);
   color: #fff;
 }
 .product-detail-landscape-btn-wishlist {

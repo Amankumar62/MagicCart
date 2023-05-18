@@ -7,6 +7,7 @@ import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
 import { Checkout } from "./Pages/Checkout";
 import { Header } from "./components/Header";
+import { Product } from "./Pages/Product";
 import { RequireAuth } from "./components/RequiresAuth";
 import "./App.css";
 import { MockAPI } from "./Pages/MockMan";
@@ -44,6 +45,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/products/:productId" element={<Product />} />
         <Route path="/mockman" element={<MockAPI />} />
       </Routes>
     </div>

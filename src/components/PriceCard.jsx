@@ -1,5 +1,9 @@
+import { useContext } from "react";
 import "./PriceCard.css";
+import { CartContext } from "../Context/CartContext";
 export const PriceCard = () => {
+  const { getTotalPrice, getTotalDiscount, getCartCount } =
+    useContext(CartContext);
   return (
     <>
       <h3>Price details</h3>
@@ -7,28 +11,30 @@ export const PriceCard = () => {
       <section>
         <ul className="price-detail-list">
           <li>
-            <span>Price(1 item)</span>
-            <span className="price">2000</span>
+            <span>Price({getCartCount()} item)</span>
+            <span className="price">{getTotalPrice()}</span>
           </li>
           <li>
             <span>Discount</span>
             <span>
-              -<span className="price"></span>1000
+              -<span className="price">{getTotalDiscount()}</span>
             </span>
           </li>
           <li>
             <span>Delivery Charges</span>
-            <span className="price">499</span>
+            <span className="price">{getTotalPrice() === 0 ? "0" : "249"}</span>
           </li>
           <hr />
           <li className="total-price">
             <span>Total amount</span>
-            <span className="price">2499</span>
+            <span className="price">{getTotalPrice()}</span>
           </li>
         </ul>
       </section>
       <hr />
-      <p className="saving-info">You will save 1000 on this order</p>
+      <p className="saving-info">
+        You will save {getTotalDiscount()} on this order
+      </p>
       <button className="btn-place-order">Place Order</button>
     </>
   );

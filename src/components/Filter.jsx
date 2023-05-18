@@ -13,11 +13,18 @@ export const Filter = () => {
           <span>1000</span>
           <span>2000</span>
         </label>
-        <input type="range" min="0" max="2000" list="range" id="price-range" />
-        <datalist id="range">
-          <option value="0"></option>
-          <option value="1000"></option>
-          <option value="2000"></option>
+        <input
+          type="range"
+          min="0"
+          max="2000"
+          value="0"
+          list="range"
+          id="price-range"
+        />
+        <datalist className="filter-datalist" id="range">
+          <option value="0">0</option>
+          <option value="1000">1000</option>
+          <option value="2000">2000</option>
         </datalist>
         <h3>Category</h3>
         <label>
@@ -27,6 +34,10 @@ export const Filter = () => {
         <label>
           <input type="checkbox" name="category" />
           Women Clothing
+        </label>
+        <label>
+          <input type="checkbox" name="category" />
+          Kids Clothing
         </label>
         <h3>Rating</h3>
         <label>
@@ -46,7 +57,7 @@ export const Filter = () => {
           <input type="radio" name="sortby" /> Price-Low to High
         </label>
         <label>
-          <input type="radio" name="sortby" /> Price-Low to High
+          <input type="radio" name="sortby" /> Price-High to Low
         </label>
       </form>
     </>
