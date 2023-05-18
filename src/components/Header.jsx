@@ -57,7 +57,8 @@ export const Header = () => {
             <AiFillHeart className="link-wishlist-a" />
             <span
               style={{
-                display: getWishlistCount() === 0 || checkLogin() ? "none" : "",
+                display:
+                  getWishlistCount() === 0 || !checkLogin() ? "none" : "",
               }}
               className="badge"
               value={getWishlistCount()}
