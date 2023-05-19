@@ -52,13 +52,26 @@
   padding: 0.4rem;
   border: none;
   font-weight: 600;
-  background-color: rgba(255, 0, 0, 0.9);
+  /* background-color: rgba(255, 0, 0, 0.9); */
+  background-image: radial-gradient(
+    circle 860px at 11.8% 33.5%,
+    rgba(240, 30, 92, 1) 0%,
+    rgba(244, 49, 74, 1) 30.5%,
+    rgba(249, 75, 37, 1) 56.1%,
+    rgba(250, 88, 19, 1) 75.6%,
+    rgba(253, 102, 2, 1) 100.2%
+  );
   color: #fff;
 }
 .product-detail-landscape-btn-wishlist {
   padding: 0.4rem;
   border: none;
   font-weight: 600;
-  background-color: var(--ternary-color);
+  /* background-color: var(--ternary-color); */
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
   color: #fff;
 }

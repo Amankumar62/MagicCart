@@ -57,7 +57,8 @@ export const Product = () => {
           <button
             onClick={() => authCheckCart(product)}
             style={{
-              display: isProductInCart(product._id) ? "none" : "",
+              display:
+                checkLogin() && isProductInCart(product._id) ? "none" : "",
             }}
             className="product-in-btn-cart"
           >
@@ -68,7 +69,8 @@ export const Product = () => {
             className="product-in-btn-cart"
             onClick={() => navigate("/cart")}
             style={{
-              display: isProductInCart(product._id) ? "" : "none",
+              display:
+                checkLogin() && isProductInCart(product._id) ? "" : "none",
             }}
           >
             Go to Cart
@@ -76,11 +78,8 @@ export const Product = () => {
           <button
             onClick={() => authCheckWishlist(product)}
             className="product-in-btn-wishlist"
-            style={{
-              backgroundColor: isProductInWihlist(product._id) && "red",
-            }}
           >
-            {isProductInWihlist(product._id)
+            {checkLogin() && isProductInWihlist(product._id)
               ? "Remove From Wishlist"
               : "Move to Wishlist"}
           </button>

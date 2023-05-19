@@ -34,15 +34,19 @@ export const Header = () => {
         <div className="header-links">
           <Link to="/products">
             <button
-              style={{ display: checkLogin() ? "" : "none" }}
-              className="btn-header-login"
+              style={{
+                display: checkLogin() ? "" : "none",
+              }}
+              className="btn-header-login explore"
             >
               Explore
             </button>
           </Link>
           <Link to="/login">
             <button
-              style={{ display: checkLogin() ? "none" : "" }}
+              style={{
+                display: checkLogin() ? "none" : "",
+              }}
               className="btn-header-login"
             >
               Login
