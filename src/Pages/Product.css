@@ -67,7 +67,12 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #fff;
-  background-color: var(--ternary-color);
+  /* background-color: var(--ternary-color); */
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
 }
 .product-in-btn-wishlist {
   padding: 0.3rem;
@@ -75,5 +80,13 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #fff;
-  background-color: #d97706;
+  /* background-color: #d97706; */
+  background-image: radial-gradient(
+    circle 860px at 11.8% 33.5%,
+    rgba(240, 30, 92, 1) 0%,
+    rgba(244, 49, 74, 1) 30.5%,
+    rgba(249, 75, 37, 1) 56.1%,
+    rgba(250, 88, 19, 1) 75.6%,
+    rgba(253, 102, 2, 1) 100.2%
+  );
 }

@@ -8,8 +8,11 @@ export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   if (checkLogin()) {
-    console.log(location?.state?.pathname);
-    navigate(location?.state?.pathname);
+    if (location?.state?.pathname) {
+      navigate(location?.state?.pathname);
+    } else {
+      navigate("/");
+    }
   }
   return (
     <>

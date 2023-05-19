@@ -17,8 +17,8 @@ export const Home = () => {
                 key={_id}
                 style={{ backgroundImage: `url(${categoryImage})` }}
               >
-                <h2>{categoryName}</h2>
-                <p>Check out our {description}</p>
+                <h2 className="category-text">{categoryName}</h2>
+                <p className="category-text">Check out our {description}</p>
               </li>
             )
           )}

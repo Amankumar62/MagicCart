@@ -34,7 +34,7 @@ export const ProductCard = ({ product }) => {
       >
         <AiTwotoneHeart
           style={{
-            color: isProductInWihlist(product._id) ? "red" : "",
+            color: isProductInWihlist(product._id) && checkLogin() ? "red" : "",
           }}
           className="btn-wishlist-icon"
         />
@@ -63,19 +63,21 @@ export const ProductCard = ({ product }) => {
         <button
           onClick={() => authCheckCart(product)}
           style={{
-            display: isProductInCart(product._id) ? "none" : "",
+            display: isProductInCart(product._id) && checkLogin() ? "none" : "",
+            backgroundImage: !product.availability && "none",
+            backgroundColor: !product.availability && "#666",
           }}
           className="btn-cart"
-          disabled={isProductInCart(product._id) || !product.availability}
+          disabled={!product.availability}
         >
           <BsCartFill />
-          {isProductInCart(product._id) ? "Added To Cart" : "Add to Cart"}
+          {"Add to Cart"}
         </button>
         <button
           className="btn-cart"
           onClick={() => navigate("/cart")}
           style={{
-            display: isProductInCart(product._id) ? "" : "none",
+            display: isProductInCart(product._id) && checkLogin() ? "" : "none",
           }}
         >
           Go to Cart
