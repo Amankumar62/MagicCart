@@ -1,11 +1,22 @@
+import { useContext } from "react";
 import "./Filter.css";
+import { CartContext } from "../Context/CartContext";
 export const Filter = () => {
+  const {
+    addFilterCategory,
+    addFilterRange,
+    range,
+    addFilterRating,
+    addFilterSortby,
+    clearFilter,
+    filter,
+  } = useContext(CartContext);
   return (
     <>
       <form className="filter-form">
         <header className="filter-header">
           <h3>Filters</h3>
-          <button>Clear</button>
+          <button onClick={(e) => clearFilter(e)}>Clear</button>
         </header>
         <h3>Price</h3>
         <label className="range-label">
@@ -17,7 +28,8 @@ export const Filter = () => {
           type="range"
           min="0"
           max="2000"
-          value="0"
+          value={range}
+          onChange={(e) => addFilterRange(e)}
           list="range"
           id="price-range"
         />
@@ -28,36 +40,96 @@ export const Filter = () => {
         </datalist>
         <h3>Category</h3>
         <label>
-          <input type="checkbox" name="category" />
+          <input
+            type="checkbox"
+            value="Men"
+            name="category"
+            onChange={(e) => addFilterCategory(e)}
+            checked={filter.category.includes("Men")}
+          />
           Men Clothing
         </label>
         <label>
-          <input type="checkbox" name="category" />
+          <input
+            type="checkbox"
+            value="Women"
+            name="category"
+            onChange={(e) => addFilterCategory(e)}
+            checked={filter.category.includes("Women")}
+          />
           Women Clothing
         </label>
         <label>
-          <input type="checkbox" name="category" />
+          <input
+            type="checkbox"
+            value="Kid"
+            name="category"
+            onChange={(e) => addFilterCategory(e)}
+            checked={filter.category.includes("Kid")}
+          />
           Kids Clothing
         </label>
         <h3>Rating</h3>
         <label>
-          <input type="radio" name="rating" /> 4 Stars & above
+          <input
+            type="radio"
+            value="4"
+            name="rating"
+            onChange={(e) => addFilterRating(e)}
+            checked={filter?.userRating === 4}
+          />
+          4 Stars & above
         </label>
         <label>
-          <input type="radio" name="rating" /> 3 Stars & above
+          <input
+            type="radio"
+            value="3"
+            name="rating"
+            onChange={(e) => addFilterRating(e)}
+            checked={filter?.userRating === 3}
+          />
+          3 Stars & above
         </label>
         <label>
-          <input type="radio" name="rating" /> 2 Stars & above
+          <input
+            type="radio"
+            value="2"
+            name="rating"
+            onChange={(e) => addFilterRating(e)}
+            checked={filter?.userRating === 2}
+          />
+          2 Stars & above
         </label>
         <label>
-          <input type="radio" name="rating" /> 1 Stars & above
+          <input
+            type="radio"
+            value="1"
+            name="rating"
+            onChange={(e) => addFilterRating(e)}
+            checked={filter?.userRating === 1}
+          />
+          1 Stars & above
         </label>
         <h3>Sort by</h3>
         <label>
-          <input type="radio" name="sortby" /> Price-Low to High
+          <input
+            type="radio"
+            name="sortby"
+            value="LTH"
+            onChange={(e) => addFilterSortby(e)}
+            checked={filter.sortby === "LTH"}
+          />{" "}
+          Price-Low to High
         </label>
         <label>
-          <input type="radio" name="sortby" /> Price-High to Low
+          <input
+            type="radio"
+            name="sortby"
+            value="HTL"
+            onChange={(e) => addFilterSortby(e)}
+            checked={filter.sortby === "HTL"}
+          />{" "}
+          Price-High to Low
         </label>
       </form>
     </>

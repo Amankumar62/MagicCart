@@ -26,6 +26,41 @@ const cartReducer = (prevState, { type, payload }) => {
             : product
         ),
       };
+    case "FILTER_CATEGORY":
+      return {
+        ...prevState,
+        filter: {
+          ...prevState.filter,
+          category: prevState.filter.category.find((name) => name === payload)
+            ? prevState.filter.category.filter((name) => name !== payload)
+            : [...prevState.filter.category, payload],
+        },
+      };
+    case "FILTER_RATING":
+      return {
+        ...prevState,
+        filter: { ...prevState.filter, userRating: payload },
+      };
+    case "FILTER_SORTBY":
+      return { ...prevState, filter: { ...prevState.filter, sortby: payload } };
+    case "FILTER_QUERY":
+      return {
+        ...prevState,
+        filter: { ...prevState.filter, searchQuery: payload },
+      };
+    case "FILTER_PRICE":
+      return { ...prevState, filter: { ...prevState.filter, price: payload } };
+    case "CLEAR_FILTER":
+      return {
+        ...prevState,
+        filter: {
+          ...prevState.filter,
+          category: [],
+          userRating: null,
+          sortby: null,
+          price: 2000,
+        },
+      };
     default:
       return prevState;
   }
@@ -35,7 +70,15 @@ export const CartProvider = ({ children }) => {
   const [cartData, dispatch] = useReducer(cartReducer, {
     cart: [],
     wishlist: [],
+    filter: {
+      category: [],
+      userRating: null,
+      sortby: null,
+      searchQuery: "",
+      price: 2000,
+    },
   });
+  console.log(cartData.filter.searchQuery);
   const getCartData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -213,6 +256,35 @@ export const CartProvider = ({ children }) => {
       : addToWishList(userProduct);
   };
 
+  const addFilterCategory = (e) => {
+    dispatch({ type: "FILTER_CATEGORY", payload: e.target.value });
+  };
+
+  const addFilterRange = (e) => {
+    dispatch({ type: "FILTER_PRICE", payload: Number(e.target.value) });
+  };
+
+  const addFilterRating = (e) => {
+    if (e.target.checked) {
+      dispatch({ type: "FILTER_RATING", payload: Number(e.target.value) });
+    }
+  };
+
+  const addFilterSortby = (e) => {
+    if (e.target.checked) {
+      dispatch({ type: "FILTER_SORTBY", payload: e.target.value });
+    }
+  };
+
+  const addFilterQuery = (e) => {
+    dispatch({ type: "FILTER_QUERY", payload: e.target.value });
+  };
+
+  const clearFilter = (e) => {
+    dispatch({ type: "CLEAR_FILTER", payload: {} });
+    e.preventDefault();
+  };
+
   useEffect(() => {
     getCartData();
   }, []);
@@ -232,8 +304,17 @@ export const CartProvider = ({ children }) => {
         getTotalDiscount,
         isProductInCart,
         isProductInWihlist,
+        addFilterCategory,
+        addFilterRange,
+        addFilterRating,
+        addFilterSortby,
+        addFilterQuery,
+        clearFilter,
         cart: cartData.cart,
         wishlist: cartData.wishlist,
+        range: cartData.filter.price,
+        filter: cartData.filter,
+        searchQuery: cartData.filter.searchQuery,
       }}
     >
       {children}
