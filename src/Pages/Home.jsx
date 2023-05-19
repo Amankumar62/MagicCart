@@ -2,9 +2,16 @@ import { useContext } from "react";
 import "./Home.css";
 import { ProductContext } from "../Context/ProductContext";
 import { useNavigate } from "react-router";
+import { CartContext } from "../Context/CartContext";
 export const Home = () => {
   const { categories } = useContext(ProductContext);
+  const { addFilterCategory, clearCategory } = useContext(CartContext);
   const navigate = useNavigate();
+  const categoryHandler = (category) => {
+    clearCategory();
+    addFilterCategory(category);
+    navigate("/products");
+  };
   return (
     <>
       <section className="category">
@@ -13,7 +20,7 @@ export const Home = () => {
           {categories.map(
             ({ _id, categoryName, description, categoryImage }) => (
               <li
-                onClick={() => navigate("/products")}
+                onClick={() => categoryHandler(categoryName)}
                 key={_id}
                 style={{ backgroundImage: `url(${categoryImage})` }}
               >

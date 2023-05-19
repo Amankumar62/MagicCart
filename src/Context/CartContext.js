@@ -50,6 +50,8 @@ const cartReducer = (prevState, { type, payload }) => {
       };
     case "FILTER_PRICE":
       return { ...prevState, filter: { ...prevState.filter, price: payload } };
+    case "CLEAR_CATEGORY":
+      return { ...prevState, filter: { ...prevState.filter, category: [] } };
     case "CLEAR_FILTER":
       return {
         ...prevState,
@@ -256,8 +258,8 @@ export const CartProvider = ({ children }) => {
       : addToWishList(userProduct);
   };
 
-  const addFilterCategory = (e) => {
-    dispatch({ type: "FILTER_CATEGORY", payload: e.target.value });
+  const addFilterCategory = (category) => {
+    dispatch({ type: "FILTER_CATEGORY", payload: category });
   };
 
   const addFilterRange = (e) => {
@@ -284,7 +286,9 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "CLEAR_FILTER", payload: {} });
     e.preventDefault();
   };
-
+  const clearCategory = () => {
+    dispatch({ type: "CLEAR_CATEGORY", payload: [] });
+  };
   useEffect(() => {
     getCartData();
   }, []);
@@ -310,6 +314,7 @@ export const CartProvider = ({ children }) => {
         addFilterSortby,
         addFilterQuery,
         clearFilter,
+        clearCategory,
         cart: cartData.cart,
         wishlist: cartData.wishlist,
         range: cartData.filter.price,
