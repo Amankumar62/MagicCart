@@ -54,16 +54,20 @@ export const ProductListing = () => {
         <h3 className="listing-heading">
           Showing All products
           <span className="product-count">
-            ( Showing {products.length} products )
+            ( Showing {displayProduct.length} products )
           </span>
         </h3>
-        <ul className="product-card-li">
-          {displayProduct.map((product) => (
-            <li key={product._id}>
-              <ProductCard product={product} />
-            </li>
-          ))}
-        </ul>
+        {displayProduct.length === 0 ? (
+          <p className="empty-productlist">No products to display</p>
+        ) : (
+          <ul className="product-card-li">
+            {displayProduct.map((product) => (
+              <li key={product._id}>
+                <ProductCard product={product} />
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     </>
   );

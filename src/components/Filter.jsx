@@ -44,7 +44,7 @@ export const Filter = () => {
             type="checkbox"
             value="Men"
             name="category"
-            onChange={(e) => addFilterCategory(e)}
+            onChange={(e) => addFilterCategory(e.target.value)}
             checked={filter.category.includes("Men")}
           />
           Men Clothing
@@ -54,7 +54,7 @@ export const Filter = () => {
             type="checkbox"
             value="Women"
             name="category"
-            onChange={(e) => addFilterCategory(e)}
+            onChange={(e) => addFilterCategory(e.target.value)}
             checked={filter.category.includes("Women")}
           />
           Women Clothing
@@ -64,7 +64,7 @@ export const Filter = () => {
             type="checkbox"
             value="Kid"
             name="category"
-            onChange={(e) => addFilterCategory(e)}
+            onChange={(e) => addFilterCategory(e.target.value)}
             checked={filter.category.includes("Kid")}
           />
           Kids Clothing
