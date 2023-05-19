@@ -11,7 +11,8 @@ import { AuthContext } from "../Context/AuthContext";
 
 export const Header = () => {
   const { checkLogin, logoutHandler } = useContext(AuthContext);
-  const { getCartCount, getWishlistCount } = useContext(CartContext);
+  const { getCartCount, getWishlistCount, addFilterQuery, searchQuery } =
+    useContext(CartContext);
   const getActiveWishlist = ({ isActive }) => {
     return {
       color: isActive && "#991b1b",
@@ -30,7 +31,13 @@ export const Header = () => {
             MagicCart
           </Link>
         </h1>
-        <input className="search-input" type="text" placeholder="🔍 Search" />
+        <input
+          className="search-input"
+          type="text"
+          placeholder="🔍 Search"
+          value={searchQuery}
+          onChange={(e) => addFilterQuery(e)}
+        />
         <div className="header-links">
           <Link to="/products">
             <button
