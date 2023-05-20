@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     address: [
       {
         id: "1",
-        active: true,
+        active: false,
         name: "Maggie Raynor",
         mobile: "6731682187",
         pincode: "309321",
@@ -138,7 +138,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const removeAddressHandler = (addId) => {
-    console.log("clicked");
     dispatch({ type: "REMOVE_ADDRESS", payload: addId });
   };
   return (

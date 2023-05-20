@@ -16,6 +16,7 @@
   width: 70%;
   margin: 0 auto;
   justify-content: space-evenly;
+  list-style: none;
 }
 .wishlist-product-listing li {
   width: 200px;
