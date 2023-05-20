@@ -13,6 +13,23 @@ const userReducer = (prevState, { type, payload }) => {
       };
     case "LOGOUT_SUCCESS":
       return { ...prevState, isLoggedIn: false, user: {}, token: "" };
+    case "ADD_ADDRESS":
+      return { ...prevState, address: [...prevState.address, payload] };
+    case "SELECT_ADDRESS":
+      return {
+        ...prevState,
+        address: prevState.address.map((adds) =>
+          adds.id === payload
+            ? { ...adds, active: true }
+            : { ...adds, active: false }
+        ),
+      };
+    case "REMOVE_ADDRESS":
+      console.log("coming here");
+      return {
+        ...prevState,
+        address: prevState.address.filter(({ id }) => id !== payload),
+      };
     default:
       return prevState;
   }
@@ -22,6 +39,16 @@ export const AuthProvider = ({ children }) => {
   const [userData, dispatch] = useReducer(userReducer, {
     isLoggedIn: false,
     user: {},
+    address: [
+      {
+        id: "1",
+        active: false,
+        name: "Maggie Raynor",
+        mobile: "6731682187",
+        pincode: "309321",
+        user_address: "94993 Trantow Pine",
+      },
+    ],
     token: "",
   });
   const setLoginSuccess = (data) => {
@@ -90,6 +117,29 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("token");
     }
   };
+
+  const addAddressHandler = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "ADD_ADDRESS",
+      payload: {
+        id: Math.floor(Math.random() * 100),
+        name: e.target.elements.addressname.value,
+        active: false,
+        mobile: e.target.elements.mobileno.value,
+        pincode: e.target.elements.pincode.value,
+        user_address: e.target.elements.address.value,
+      },
+    });
+  };
+
+  const selectAddressHandler = (addId) => {
+    dispatch({ type: "SELECT_ADDRESS", payload: addId });
+  };
+
+  const removeAddressHandler = (addId) => {
+    dispatch({ type: "REMOVE_ADDRESS", payload: addId });
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -98,6 +148,10 @@ export const AuthProvider = ({ children }) => {
         authenticateUser,
         logoutHandler,
         signUpHandler,
+        addAddressHandler,
+        selectAddressHandler,
+        removeAddressHandler,
+        address: userData.address,
       }}
     >
       {children}

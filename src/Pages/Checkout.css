@@ -1,0 +1,82 @@
+.checkout-container {
+  margin-top: 6rem;
+  display: flex;
+  gap: 2rem;
+  width: 90%;
+  margin: 6rem auto;
+}
+.address-card {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.price-card {
+  width: 40%;
+  padding: 0.9rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
+.add-address-form-container {
+  width: 100%;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.add-address-form {
+  display: flex;
+  width: 30rem;
+  margin: 6rem;
+  gap: 0.7rem;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+.add-address-form label {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+.add-address-form input {
+  padding: 0.2rem;
+  border: 1px solid #999;
+  font-size: 1rem;
+}
+.add-address-form textarea {
+  resize: none;
+}
+.add-address-form button {
+  padding: 0.3rem;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.btn-add-address {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
+}
+.btn-cancel-address {
+  background-image: radial-gradient(
+    circle 860px at 11.8% 33.5%,
+    rgba(240, 30, 92, 1) 0%,
+    rgba(244, 49, 74, 1) 30.5%,
+    rgba(249, 75, 37, 1) 56.1%,
+    rgba(250, 88, 19, 1) 75.6%,
+    rgba(253, 102, 2, 1) 100.2%
+  );
+}
+.add-address-form h3 {
+  text-align: center;
+  color: #333;
+}
