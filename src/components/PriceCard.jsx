@@ -2,13 +2,39 @@ import { useContext } from "react";
 import "./PriceCard.css";
 import { CartContext } from "../Context/CartContext";
 import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
+
 export const PriceCard = () => {
   const { getTotalPrice, getTotalDiscount, cart } = useContext(CartContext);
   const { address } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
+  const error = (msg) => {
+    return toast.error(msg, {
+      position: "bottom-right",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const success = (msg) => {
+    return toast.success(msg, {
+      position: "bottom-right",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -31,10 +57,9 @@ export const PriceCard = () => {
     );
 
     if (!res) {
-      alert("Failed to load");
+      error("Failed to load payment gateway");
       return;
     }
-
     const options = {
       key: "rzp_test_Hxp9VHO0sL1wfr",
       currency: "INR",
@@ -43,7 +68,7 @@ export const PriceCard = () => {
       description: "Thanks for purchasing",
       image: "https://ibb.co/y6rmjhR",
       handler: function (response) {
-        alert(response);
+        success(`Payment Successfull!!`);
       },
     };
     const paymentObject = new window.Razorpay(options);
@@ -55,7 +80,7 @@ export const PriceCard = () => {
       displayRazorpay(amount);
       return;
     } else {
-      alert("Select address to place order");
+      error("Please select an address to place order");
     }
   };
 
@@ -69,12 +94,12 @@ export const PriceCard = () => {
             <p>No Product Added</p>
           ) : (
             <ul className="price-detail-list">
-              {cart.map(({ title, discounted_price, qty }) => (
+              {cart.map(({ title, price, qty }) => (
                 <li>
                   <span>
                     {title}({qty})
                   </span>
-                  <span className="price">{discounted_price}</span>
+                  <span className="price">{price * qty}</span>
                 </li>
               ))}
             </ul>

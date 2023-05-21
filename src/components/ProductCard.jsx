@@ -4,6 +4,7 @@ import { AiTwotoneHeart } from "react-icons/ai";
 import { BsCartFill } from "react-icons/bs";
 import { CartContext } from "../Context/CartContext";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 
 export const ProductCard = ({ product }) => {
@@ -12,13 +13,42 @@ export const ProductCard = ({ product }) => {
   const { checkLogin } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const authCheckCart = (product) => {
-    checkLogin() ? addToCart(product) : navigate("/login", { state: location });
+  const success = (product, place, action = "Added") => {
+    let preposition = "to";
+    if (action === "Removed") {
+      preposition = "from";
+    }
+    return toast.success(
+      `${action} 1 ${product.description} ${preposition} ${place}`,
+      {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
   };
-  const authCheckWishlist = (product) => {
-    checkLogin()
-      ? toggleWishlist(product)
-      : navigate("/login", { state: location });
+  const authCheckCart = (product, place) => {
+    if (checkLogin()) {
+      addToCart(product);
+      success(product, place);
+    } else {
+      navigate("/login", { state: location });
+    }
+  };
+  const authCheckWishlist = (product, place) => {
+    if (checkLogin()) {
+      toggleWishlist(product);
+      isProductInWihlist(product._id)
+        ? success(product, place, "Removed")
+        : success(product, place);
+    } else {
+      navigate("/login", { state: location });
+    }
   };
   return (
     <>
@@ -29,7 +59,7 @@ export const ProductCard = ({ product }) => {
         alt="pro banner"
       />
       <button
-        onClick={() => authCheckWishlist(product)}
+        onClick={() => authCheckWishlist(product, "wishlist")}
         className="btn-wishlist"
       >
         <AiTwotoneHeart
@@ -61,7 +91,7 @@ export const ProductCard = ({ product }) => {
           {product.availability ? "In Stock" : "Out of stock"}
         </span>
         <button
-          onClick={() => authCheckCart(product)}
+          onClick={() => authCheckCart(product, "cart")}
           style={{
             display: isProductInCart(product._id) && checkLogin() ? "none" : "",
             backgroundImage: !product.availability && "none",
@@ -71,7 +101,7 @@ export const ProductCard = ({ product }) => {
           disabled={!product.availability}
         >
           <BsCartFill />
-          {"Add to Cart"}
+          Add to Cart
         </button>
         <button
           className="btn-cart"

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./ProductCardLandscape.css";
 import { CartContext } from "../Context/CartContext";
+import { toast } from "react-toastify";
 export const ProductCardLandscape = ({ product }) => {
   const { title, image, discounted_price, price } = product;
   const {
@@ -9,6 +10,37 @@ export const ProductCardLandscape = ({ product }) => {
     updateQuantityCart,
     isProductInWihlist,
   } = useContext(CartContext);
+
+  const success = (product, place, action = "Added") => {
+    let preposition = "to";
+    if (action === "Removed") {
+      preposition = "from";
+    }
+    return toast.success(
+      `${action} 1 ${product.description} ${preposition} ${place}`,
+      {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
+  };
+  const authCheckCart = (product, place) => {
+    removeFromCart(product);
+    success(product, place, "Removed");
+  };
+  const authCheckWishlist = (product, place) => {
+    toggleWishlist(product);
+    isProductInWihlist(product._id)
+      ? success(product, place, "Removed")
+      : success(product, place);
+  };
+
   return (
     <>
       <img
@@ -44,13 +76,13 @@ export const ProductCardLandscape = ({ product }) => {
           </span>
         </div>
         <button
-          onClick={() => removeFromCart(product)}
+          onClick={() => authCheckCart(product, "cart")}
           className="product-detail-landscape-btn-remove"
         >
           Remove From Cart
         </button>
         <button
-          onClick={() => toggleWishlist(product)}
+          onClick={() => authCheckWishlist(product, "wishlist")}
           style={{
             backgroundColor: isProductInWihlist(product._id) ? "#666" : "",
           }}

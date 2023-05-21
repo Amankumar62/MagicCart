@@ -9,6 +9,8 @@ import { Checkout } from "./Pages/Checkout";
 import { Header } from "./components/Header";
 import { Product } from "./Pages/Product";
 import { RequireAuth } from "./components/RequiresAuth";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { MockAPI } from "./Pages/MockMan";
 
@@ -16,6 +18,17 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={1500}
+        hideProgressBar
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />

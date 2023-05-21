@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { BsCartFill } from "react-icons/bs";
 import { ProductContext } from "../Context/ProductContext";
 import { CartContext } from "../Context/CartContext";
+import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 export const Product = () => {
   const { productId } = useParams();
@@ -26,13 +27,42 @@ export const Product = () => {
     availability,
   } = product;
   const location = useLocation();
-  const authCheckCart = (product) => {
-    checkLogin() ? addToCart(product) : navigate("/login", { state: location });
+  const success = (product, place, action = "Added") => {
+    let preposition = "to";
+    if (action === "Removed") {
+      preposition = "from";
+    }
+    return toast.success(
+      `${action} 1 ${product.description} ${preposition} ${place}`,
+      {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      }
+    );
   };
-  const authCheckWishlist = (product) => {
-    checkLogin()
-      ? toggleWishlist(product)
-      : navigate("/login", { state: location });
+  const authCheckCart = (product, place) => {
+    if (checkLogin()) {
+      addToCart(product);
+      success(product, place);
+    } else {
+      navigate("/login", { state: location });
+    }
+  };
+  const authCheckWishlist = (product, place) => {
+    if (checkLogin()) {
+      toggleWishlist(product);
+      isProductInWihlist(product._id)
+        ? success(product, place, "Removed")
+        : success(product, place);
+    } else {
+      navigate("/login", { state: location });
+    }
   };
   return (
     <>
@@ -55,7 +85,7 @@ export const Product = () => {
             {availability ? "In Stock" : "Out Of Stock"}
           </span>
           <button
-            onClick={() => authCheckCart(product)}
+            onClick={() => authCheckCart(product, "cart")}
             style={{
               display:
                 checkLogin() && isProductInCart(product._id) ? "none" : "",
@@ -76,7 +106,7 @@ export const Product = () => {
             Go to Cart
           </button>
           <button
-            onClick={() => authCheckWishlist(product)}
+            onClick={() => authCheckWishlist(product, "wishlist")}
             className="product-in-btn-wishlist"
           >
             {checkLogin() && isProductInWihlist(product._id)
