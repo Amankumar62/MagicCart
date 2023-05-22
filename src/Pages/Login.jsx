@@ -4,7 +4,7 @@ import "./Login.css";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
-  const { checkLogin, authenticateUser } = useContext(AuthContext);
+  const { checkLogin, user, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   if (checkLogin()) {
@@ -35,6 +35,7 @@ export const Login = () => {
           type="email"
           placeholder="example@gmail.com"
           id="userEmail"
+          value={user?.email}
           pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
           required={true}
         />
@@ -44,6 +45,7 @@ export const Login = () => {
         <input
           className="login-input"
           type="password"
+          value={user?.password}
           placeholder="**********"
           id="userPassword"
           required={true}

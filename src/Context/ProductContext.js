@@ -1,16 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
+import { productReducer } from "../reducer/reducer";
 export const ProductContext = createContext();
-
-const productReducer = (prevState, { type, payload }) => {
-  switch (type) {
-    case "SET_CATEGORY":
-      return { ...prevState, categories: [...payload] };
-    case "SET_PRODUCT":
-      return { ...prevState, products: payload };
-    default:
-      return { ...prevState };
-  }
-};
 
 export const ProductProvider = ({ children }) => {
   const [productData, dispatch] = useReducer(productReducer, {

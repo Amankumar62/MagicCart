@@ -1,18 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
-import {
-  AiOutlineShoppingCart,
-  AiFillHeart,
-  AiOutlineLogout,
-} from "react-icons/ai";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 import "./Header.css";
 import { useContext } from "react";
-import { CartContext } from "../Context/CartContext";
-import { AuthContext } from "../Context/AuthContext";
+import { CartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const Header = () => {
-  const { checkLogin, logoutHandler } = useContext(AuthContext);
+  const { checkLogin } = useContext(AuthContext);
   const { getCartCount, getWishlistCount, addFilterQuery, searchQuery } =
     useContext(CartContext);
+  const navigate = useNavigate();
   const getActiveWishlist = ({ isActive }) => {
     return {
       color: isActive && "#991b1b",
@@ -86,11 +84,13 @@ export const Header = () => {
             ></span>
           </NavLink>
           <button
-            style={{ display: checkLogin() ? "" : "none" }}
+            // style={{ display: checkLogin() ? "" : "none" }}
             className="btn-header-logout"
-            onClick={() => logoutHandler()}
+            // onClick={() => logoutHandler()}
+            onClick={() => navigate("/profile")}
           >
-            <AiOutlineLogout className="btn-header-logout-icon" />
+            {/* <AiOutlineLogout className="btn-header-logout-icon" /> */}
+            <CgProfile className="btn-header-logout-icon" />
           </button>
         </div>
       </nav>

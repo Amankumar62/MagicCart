@@ -88,9 +88,12 @@ export const Product = () => {
             onClick={() => authCheckCart(product, "cart")}
             style={{
               display:
-                checkLogin() && isProductInCart(product._id) ? "none" : "",
+                isProductInCart(product._id) && checkLogin() ? "none" : "",
+              backgroundImage: !product.availability && "none",
+              backgroundColor: !product.availability && "#666",
             }}
             className="product-in-btn-cart"
+            disabled={!product.availability}
           >
             <BsCartFill />
             Add to Cart

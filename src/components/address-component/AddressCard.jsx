@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import "./AddressCard.css";
 

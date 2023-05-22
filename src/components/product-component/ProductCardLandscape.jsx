@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./ProductCardLandscape.css";
-import { CartContext } from "../Context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import { toast } from "react-toastify";
 export const ProductCardLandscape = ({ product }) => {
   const { title, image, discounted_price, price } = product;

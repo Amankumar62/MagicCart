@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { AddressCard } from "../components/AddressCard";
-import { PriceCard } from "../components/PriceCard";
+import { AddressCard } from "../components/address-component/AddressCard";
+import { PriceCard } from "../components/price-component/PriceCard";
 import "./Checkout.css";
 import { AuthContext } from "../Context/AuthContext";
 export const Checkout = () => {
   const [hideAddress, sethideAddress] = useState(true);
+
   const { addAddressHandler } = useContext(AuthContext);
   return (
     <>
@@ -13,7 +14,10 @@ export const Checkout = () => {
         className="add-address-form-container"
       >
         <form
-          onSubmit={(e) => addAddressHandler(e)}
+          onSubmit={(e) => {
+            addAddressHandler(e);
+            sethideAddress(true);
+          }}
           className="add-address-form"
         >
           <h3>ADD NEW ADDRESS</h3>
