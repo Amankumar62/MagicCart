@@ -1,39 +1,9 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { CartContext } from "./CartContext";
+import { userReducer } from "../reducer/reducer";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
-
-const userReducer = (prevState, { type, payload }) => {
-  switch (type) {
-    case "LOGIN_SUCCESS":
-      return {
-        ...prevState,
-        isLoggedIn: true,
-        user: payload.foundUser,
-        token: payload.encodedToken,
-      };
-    case "LOGOUT_SUCCESS":
-      return { ...prevState, isLoggedIn: false, user: {}, token: "" };
-    case "ADD_ADDRESS":
-      return { ...prevState, address: [...prevState.address, payload] };
-    case "SELECT_ADDRESS":
-      return {
-        ...prevState,
-        address: prevState.address.map((adds) =>
-          adds.id === payload
-            ? { ...adds, active: true }
-            : { ...adds, active: false }
-        ),
-      };
-    case "REMOVE_ADDRESS":
-      console.log("coming here");
-      return {
-        ...prevState,
-        address: prevState.address.filter(({ id }) => id !== payload),
-      };
-    default:
-      return prevState;
-  }
-};
 
 export const AuthProvider = ({ children }) => {
   const [userData, dispatch] = useReducer(userReducer, {
@@ -49,8 +19,10 @@ export const AuthProvider = ({ children }) => {
         user_address: "94993 Trantow Pine",
       },
     ],
+    orderHistory: [],
     token: "",
   });
+  const { resetCartContext } = useContext(CartContext);
   const setLoginSuccess = (data) => {
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
   };
@@ -69,14 +41,51 @@ export const AuthProvider = ({ children }) => {
       console.log(response.status);
       if (response.status === 200) {
         const responseData = await response.json();
+        resetCartContext();
         setLoginSuccess(responseData);
         localStorage.setItem("token", responseData.encodedToken);
+        toast.success(
+          `Welcome ${
+            responseData.foundUser.firstName +
+            " " +
+            responseData.foundUser.lastName
+          }`,
+          {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        );
       }
       if (response.status === 404) {
         //token not found
+        toast.error("Wrong credentials.\nInvalid email or password provided", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
       if (response.status === 422) {
-        //useralready present
+        toast.error(
+          "A user account alrady exists with the provided email address",
+          {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        );
       }
     } catch (err) {
       console.error(err);
@@ -100,8 +109,22 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 201) {
         const responseData = await response.json();
         setLoginSuccess(responseData);
+        resetCartContext();
         localStorage.setItem("token", responseData.encodedToken);
-      } else if (response.status === 404) {
+      } else if (response.status === 422) {
+        toast.error(
+          "A user accout alrady exists with the provided email address",
+          {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          }
+        );
       }
     } catch (err) {
       console.error(err);
@@ -117,7 +140,6 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("token");
     }
   };
-
   const addAddressHandler = (e) => {
     e.preventDefault();
     dispatch({
@@ -129,6 +151,7 @@ export const AuthProvider = ({ children }) => {
         mobile: e.target.elements.mobileno.value,
         pincode: e.target.elements.pincode.value,
         user_address: e.target.elements.address.value,
+        user: userData.user,
       },
     });
   };
@@ -140,6 +163,27 @@ export const AuthProvider = ({ children }) => {
   const removeAddressHandler = (addId) => {
     dispatch({ type: "REMOVE_ADDRESS", payload: addId });
   };
+
+  const orderHistoryHandler = (
+    payment_id,
+    amount,
+    date,
+    address,
+    orderItems
+  ) => {
+    dispatch({
+      type: "ADD_ORDER",
+      payload: {
+        paymentId: payment_id,
+        totalAmount: amount,
+        orderDate: date,
+        deliveryAddress: address,
+        cart: orderItems,
+      },
+    });
+  };
+
+  console.log(userData.orderHistory);
   return (
     <AuthContext.Provider
       value={{
@@ -151,7 +195,10 @@ export const AuthProvider = ({ children }) => {
         addAddressHandler,
         selectAddressHandler,
         removeAddressHandler,
+        orderHistoryHandler,
         address: userData.address,
+        user: userData.user,
+        orderHistory: userData.orderHistory,
       }}
     >
       {children}

@@ -6,13 +6,15 @@ import { Wishlist } from "./Pages/Wishlist";
 import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
 import { Checkout } from "./Pages/Checkout";
-import { Header } from "./components/Header";
+import { Header } from "./components/header-component/Header";
 import { Product } from "./Pages/Product";
-import { RequireAuth } from "./components/RequiresAuth";
+import { UserProfile } from "./Pages/UserProfile";
+import { RequireAuth } from "./auth/RequiresAuth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { MockAPI } from "./Pages/MockMan";
+import { NotFound } from "./Pages/NotFound";
 
 function App() {
   return (
@@ -58,8 +60,17 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <UserProfile />
+            </RequireAuth>
+          }
+        />
         <Route path="/products/:productId" element={<Product />} />
         <Route path="/mockman" element={<MockAPI />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./ProductListing.css";
-import { Filter } from "../components/Filter";
-import { ProductCard } from "../components/ProductCard";
+import { Filter } from "../components/filter-component/Filter";
+import { ProductCard } from "../components/product-component/ProductCard";
 import { ProductContext } from "../Context/ProductContext";
 import { CartContext } from "../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";

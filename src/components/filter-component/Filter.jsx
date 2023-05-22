@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Filter.css";
-import { CartContext } from "../Context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 export const Filter = () => {
   const {
     addFilterCategory,

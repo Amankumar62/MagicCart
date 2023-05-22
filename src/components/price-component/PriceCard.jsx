@@ -1,15 +1,37 @@
 import { useContext } from "react";
 import "./PriceCard.css";
-import { CartContext } from "../Context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const PriceCard = () => {
-  const { getTotalPrice, getTotalDiscount, cart } = useContext(CartContext);
-  const { address } = useContext(AuthContext);
+  const {
+    getTotalPrice,
+    getTotalDiscount,
+    cart,
+    clearCart,
+    removeMultipleFromCart,
+  } = useContext(CartContext);
+  const { address, orderHistoryHandler } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const orderHandler = (orderRes) => {
+    const date = new Date();
+    const selectedAddress = address.find(({ active }) => active);
+    orderHistoryHandler(
+      orderRes.razorpay_payment_id,
+      getTotalPrice() + 249,
+      date.toString(),
+      selectedAddress,
+      cart
+    );
+    success(`Payment Successfull!!`);
+    removeMultipleFromCart(cart);
+    clearCart();
+    navigate("/profile");
+  };
 
   const error = (msg) => {
     return toast.error(msg, {
@@ -68,7 +90,7 @@ export const PriceCard = () => {
       description: "Thanks for purchasing",
       image: "https://ibb.co/y6rmjhR",
       handler: function (response) {
-        success(`Payment Successfull!!`);
+        orderHandler(response);
       },
     };
     const paymentObject = new window.Razorpay(options);
@@ -76,7 +98,11 @@ export const PriceCard = () => {
   };
 
   const orderAuthHandler = (amount) => {
-    if (address.length !== 0 && address.find(({ active }) => active)) {
+    if (
+      cart.length !== 0 &&
+      address.length !== 0 &&
+      address.find(({ active }) => active)
+    ) {
       displayRazorpay(amount);
       return;
     } else {

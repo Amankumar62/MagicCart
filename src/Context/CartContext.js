@@ -1,72 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
-
+import { cartReducer } from "../reducer/reducer";
 export const CartContext = createContext();
-
-const cartReducer = (prevState, { type, payload }) => {
-  switch (type) {
-    case "ADD_TO_CART":
-      return { ...prevState, cart: [...payload] };
-    case "ADD_TO_WISHLIST":
-      return { ...prevState, wishlist: [...payload] };
-    case "INCREMENT_CART":
-      return {
-        ...prevState,
-        cart: prevState.cart.map((product) =>
-          product._id === payload._id
-            ? { ...product, qty: product.qty + 1 }
-            : product
-        ),
-      };
-    case "DECREMENT_CART":
-      return {
-        ...prevState,
-        cart: prevState.cart.map((product) =>
-          product._id === payload._id
-            ? { ...product, qty: product.qty - 1 }
-            : product
-        ),
-      };
-    case "FILTER_CATEGORY":
-      return {
-        ...prevState,
-        filter: {
-          ...prevState.filter,
-          category: prevState.filter.category.find((name) => name === payload)
-            ? prevState.filter.category.filter((name) => name !== payload)
-            : [...prevState.filter.category, payload],
-        },
-      };
-    case "FILTER_RATING":
-      return {
-        ...prevState,
-        filter: { ...prevState.filter, userRating: payload },
-      };
-    case "FILTER_SORTBY":
-      return { ...prevState, filter: { ...prevState.filter, sortby: payload } };
-    case "FILTER_QUERY":
-      return {
-        ...prevState,
-        filter: { ...prevState.filter, searchQuery: payload },
-      };
-    case "FILTER_PRICE":
-      return { ...prevState, filter: { ...prevState.filter, price: payload } };
-    case "CLEAR_CATEGORY":
-      return { ...prevState, filter: { ...prevState.filter, category: [] } };
-    case "CLEAR_FILTER":
-      return {
-        ...prevState,
-        filter: {
-          ...prevState.filter,
-          category: [],
-          userRating: null,
-          sortby: null,
-          price: 2000,
-        },
-      };
-    default:
-      return prevState;
-  }
-};
 
 export const CartProvider = ({ children }) => {
   const [cartData, dispatch] = useReducer(cartReducer, {
@@ -175,6 +109,12 @@ export const CartProvider = ({ children }) => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const removeMultipleFromCart = (cartArray) => {
+    cartArray.forEach((item) => {
+      removeFromCart(item);
+    });
   };
 
   const removeFromWishlist = async (userProduct) => {
@@ -289,6 +229,12 @@ export const CartProvider = ({ children }) => {
   const clearCategory = () => {
     dispatch({ type: "CLEAR_CATEGORY", payload: [] });
   };
+  const resetCartContext = () => {
+    dispatch({ type: "RESET_CART_WISHLIST", payload: [] });
+  };
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART", payload: [] });
+  };
   useEffect(() => {
     getCartData();
   }, []);
@@ -299,9 +245,12 @@ export const CartProvider = ({ children }) => {
         addToCart,
         addToWishList,
         removeFromCart,
+        removeMultipleFromCart,
         removeFromWishlist,
         updateQuantityCart,
         getCartCount,
+        resetCartContext,
+        clearCart,
         toggleWishlist,
         getWishlistCount,
         getTotalPrice,

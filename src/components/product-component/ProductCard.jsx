@@ -2,8 +2,8 @@ import { useContext } from "react";
 import "./ProductCard.css";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { BsCartFill } from "react-icons/bs";
-import { CartContext } from "../Context/CartContext";
-import { AuthContext } from "../Context/AuthContext";
+import { CartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 
@@ -25,7 +25,6 @@ export const ProductCard = ({ product }) => {
         autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: false,
-        pauseOnHover: true,
         draggable: false,
         progress: undefined,
         theme: "colored",
@@ -72,14 +71,14 @@ export const ProductCard = ({ product }) => {
       <span className="product-rating">{product.rating}/5</span>
       <span
         className="product-size"
-        style={{ display: product.rating !== "" ? "" : "none" }}
+        style={{ display: product.size !== "" ? "" : "none" }}
       >
         {product.size}
       </span>
       <section className="product-detail">
         <span className="product-name">{product.title}</span>
         <span className="product-price">
-          {product.discounted_price}{" "}
+          {product.discounted_price}
           <span className="actual-price">{product.price}</span>
         </span>
         <span
