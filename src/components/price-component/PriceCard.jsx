@@ -16,7 +16,6 @@ export const PriceCard = () => {
   const { address, orderHistoryHandler } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-
   const orderHandler = (orderRes) => {
     const date = new Date();
     const selectedAddress = address.find(({ active }) => active);
@@ -98,13 +97,13 @@ export const PriceCard = () => {
   };
 
   const orderAuthHandler = (amount) => {
-    if (
-      cart.length !== 0 &&
-      address.length !== 0 &&
-      address.find(({ active }) => active)
-    ) {
-      displayRazorpay(amount);
-      return;
+    if (address.length !== 0 && address.find(({ active }) => active)) {
+      if (cart.length !== 0) {
+        displayRazorpay(amount);
+        return;
+      } else {
+        error("No items added");
+      }
     } else {
       error("Please select an address to place order");
     }
