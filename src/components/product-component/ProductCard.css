@@ -77,6 +77,9 @@ span {
 }
 
 @media screen and (max-width: 400px) {
+  .btn-wishlist {
+    transform: translate(11rem, -12.4rem);
+  }
   .product-size {
     right: -6.5rem;
   }
