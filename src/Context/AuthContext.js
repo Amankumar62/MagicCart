@@ -2,10 +2,12 @@ import { createContext, useContext, useReducer } from "react";
 import { CartContext } from "./CartContext";
 import { userReducer } from "../reducer/reducer";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [userData, dispatch] = useReducer(userReducer, {
     isLoggedIn: false,
     user: {},
@@ -24,6 +26,7 @@ export const AuthProvider = ({ children }) => {
   });
   const { resetCartContext } = useContext(CartContext);
   const setLoginSuccess = (data) => {
+    console.log(data);
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
   };
 
@@ -108,12 +111,22 @@ export const AuthProvider = ({ children }) => {
       console.log(response.status);
       if (response.status === 201) {
         const responseData = await response.json();
-        setLoginSuccess(responseData);
         resetCartContext();
         localStorage.setItem("token", responseData.encodedToken);
+        navigate("/login");
+        toast.success("User created. Please login to continue", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else if (response.status === 422) {
         toast.error(
-          "A user accout alrady exists with the provided email address",
+          "A user account alrady exists with the provided email address",
           {
             position: "top-center",
             autoClose: 1500,

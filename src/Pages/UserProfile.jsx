@@ -14,11 +14,11 @@ export const UserProfile = () => {
           <h2>Profile details</h2>
           <div className="profile-details-flex">
             <p>
-              <b>Name:</b> {user.firstName + " " + user.lastName}
+              <b>Name:</b> {user?.firstName + " " + user?.lastName}
             </p>
             <p>
               <b>Email:</b>
-              {user.email}
+              {user?.email}
             </p>
             <button onClick={() => logoutHandler()}>Logout</button>
           </div>

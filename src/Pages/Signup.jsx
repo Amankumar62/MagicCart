@@ -1,13 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 export const Signup = () => {
   const { signUpHandler, checkLogin } = useContext(AuthContext);
+  const [msg, setMsg] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
   if (checkLogin()) {
     navigate("/");
   }
+  const disablehandler = (e) => {
+    if (e.target.value.trim() === "") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  };
+  const confirmPasswordHandler = (e) => {
+    if (
+      !disabled &&
+      e.target.value.trim() !== "" &&
+      document.getElementById("password").value !== e.target.value
+    ) {
+      setMsg("Password not matching");
+    } else {
+      setMsg("");
+    }
+  };
   return (
     <>
       <form
@@ -64,8 +84,23 @@ export const Signup = () => {
           placeholder="********"
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
           required={true}
+          onChange={(e) => disablehandler(e)}
         />
-        <button type="submit" className="signup-button">
+        <p className="match-password">{msg}</p>
+        <label for="password" className="signup-label">
+          Confirm Password
+        </label>
+        <input
+          id="confirm-password"
+          className="signup-input"
+          type="password"
+          placeholder="********"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+          onChange={(e) => confirmPasswordHandler(e)}
+          required={true}
+          disabled={disabled}
+        />
+        <button type="submit" className="signup-button" disabled={msg !== ""}>
           Create New Account
         </button>
         <Link className="signup-link" to="/login">
