@@ -8,6 +8,12 @@ export const userReducer = (prevState, { type, payload }) => {
         token: payload.encodedToken,
         orderHistory: [],
       };
+    case "SIGNUP_SUCCESS":
+      return {
+        ...prevState,
+        isLoggedIn: false,
+        orderHistory: [],
+      };
     case "LOGOUT_SUCCESS":
       return { ...prevState, isLoggedIn: false, user: {}, token: "" };
     case "ADD_ADDRESS":

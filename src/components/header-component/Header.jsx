@@ -21,6 +21,10 @@ export const Header = () => {
       color: isActive && "#15803d",
     };
   };
+  const searchHandler = (e) => {
+    navigate("/products");
+    addFilterQuery(e);
+  };
   return (
     <>
       <nav>
@@ -34,7 +38,7 @@ export const Header = () => {
           type="text"
           placeholder="🔍 Search"
           value={searchQuery}
-          onChange={(e) => addFilterQuery(e)}
+          onChange={(e) => searchHandler(e)}
         />
         <div className="header-links">
           <Link to="/products">

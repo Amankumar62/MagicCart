@@ -43,3 +43,6 @@
 .signup-link:hover {
   color: #000;
 }
+.match-password {
+  color: red;
+}
