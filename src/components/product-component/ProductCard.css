@@ -75,3 +75,12 @@ span {
   border-radius: 50%;
   font-size: 1.5rem;
 }
+
+/* @media screen and (max-width: 400px) {
+  .btn-wishlist {
+    transform: translate(8rem, -12.7rem);
+  }
+  .product-size {
+    right: -3.5rem;
+  }
+} */

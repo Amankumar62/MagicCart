@@ -15,6 +15,7 @@
 .landing-ul {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .landing-ul li {
   width: 200px;

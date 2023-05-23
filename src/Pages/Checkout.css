@@ -80,3 +80,16 @@
   text-align: center;
   color: #333;
 }
+@media screen and (max-width: 650px) {
+  .checkout-container {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .price-card {
+    width: 80%;
+  }
+  .address-card {
+    width: 80%;
+  }
+}

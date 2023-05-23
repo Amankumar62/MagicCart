@@ -17,7 +17,7 @@ export const Cart = () => {
           <div className="product-card-landscape-list">
             <ul>
               {cart.map((product) => (
-                <li>
+                <li className="product-card-landscape-list-listing">
                   <ProductCardLandscape product={product} />
                 </li>
               ))}
