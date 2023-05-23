@@ -14,6 +14,8 @@
   padding: 1rem;
   display: flex;
   width: 70%;
+  gap: 1rem;
+  flex-wrap: wrap;
   margin: 0 auto;
   justify-content: space-evenly;
   list-style: none;

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./ProductListing.css";
 import { Filter } from "../components/filter-component/Filter";
 import { ProductCard } from "../components/product-component/ProductCard";
@@ -9,6 +9,7 @@ export const ProductListing = () => {
   const { products } = useContext(ProductContext);
   const { filter } = useContext(CartContext);
 
+  const [showFilter, setShowFilter] = useState(false);
   const sortOrder = (order) => {
     if (order === "LTH")
       return (a, b) => a.discounted_price - b.discounted_price;
@@ -51,6 +52,11 @@ export const ProductListing = () => {
       <aside>
         <Filter />
       </aside>
+
+      <div className={`filter-mobile-view ${showFilter && `show-filter`} `}>
+        <Filter />
+      </div>
+
       {products.length === 0 ? (
         <TailSpin
           height="80"
@@ -69,6 +75,12 @@ export const ProductListing = () => {
             <span className="product-count">
               ( Showing {displayProduct.length} products )
             </span>
+            <button
+              className="filter-mobile-view-btn"
+              onClick={() => setShowFilter(!showFilter)}
+            >
+              filter
+            </button>
           </h3>
           {displayProduct.length === 0 ? (
             <p className="empty-productlist">No products to display</p>

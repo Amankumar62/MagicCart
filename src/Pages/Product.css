@@ -90,3 +90,15 @@
     rgba(253, 102, 2, 1) 100.2%
   );
 }
+
+@media screen and (max-width: 792px) {
+  .product-in-container {
+    flex-direction: column;
+  }
+  .product-in-image {
+    width: 100%;
+  }
+  .product-in-title {
+    margin-top: 2rem;
+  }
+}
