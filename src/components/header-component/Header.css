@@ -37,7 +37,7 @@ nav {
 .badge {
   content: attr(value);
   position: relative;
-  font-size: 0.2rem;
+  font-size: 10px;
   top: -1.2rem;
   padding: 0.3rem 0.5rem;
   right: 5px;
@@ -141,9 +141,17 @@ a .btn-header-login {
   .badge {
     /* padding: 0.4rem; */
     top: -14px;
-    font-size: 0.5rem;
   }
   .link-wishlist-a {
     height: 1rem;
+  }
+}
+@media screen and (max-width: 390px) {
+  .badge {
+    font-size: 2vw;
+    color: red;
+    top: -35px;
+    right: -8px;
+    background-image: none;
   }
 }

@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../Context/AuthContext";
 
 export const Login = () => {
+  const timerId = useRef();
   const { checkLogin, user, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,6 +15,14 @@ export const Login = () => {
       navigate("/");
     }
   }
+
+  const debounceClick = (callback, delay, e, ...args) => {
+    clearTimeout(timerId.current);
+    timerId.current = setTimeout(() => {
+      callback(e, ...args);
+    }, delay);
+  };
+
   return (
     <>
       <form
@@ -54,7 +63,9 @@ export const Login = () => {
           Login
         </button>
         <button
-          onClick={(e) => authenticateUser(e, "test@gmail.com", "test")}
+          onClick={(e) =>
+            debounceClick(authenticateUser, 700, e, "test@gmail.com", "test")
+          }
           className="login-button"
         >
           Login with Test Credentials

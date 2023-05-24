@@ -2,13 +2,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import "./Header.css";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Context/AuthContext";
 
 export const Header = () => {
+  const timerId = useRef();
   const { checkLogin } = useContext(AuthContext);
-  const { getCartCount, getWishlistCount, addFilterQuery, searchQuery } =
+  const { getCartCount, getWishlistCount, addFilterQuery } =
     useContext(CartContext);
   const navigate = useNavigate();
   const getActiveWishlist = ({ isActive }) => {
@@ -21,10 +22,16 @@ export const Header = () => {
       color: isActive && "#15803d",
     };
   };
+
   const searchHandler = (e) => {
     navigate("/products");
     addFilterQuery(e);
   };
+  const debounceSearch = (callback, e, delay) => {
+    clearTimeout(timerId.current);
+    timerId.current = setTimeout(() => callback(e), delay);
+  };
+
   return (
     <>
       <nav>
@@ -37,8 +44,7 @@ export const Header = () => {
           className="search-input"
           type="text"
           placeholder="🔍 Search"
-          value={searchQuery}
-          onChange={(e) => searchHandler(e)}
+          onChange={(e) => debounceSearch(searchHandler, e, 500)}
         />
         <div className="header-links">
           <Link to="/products">
