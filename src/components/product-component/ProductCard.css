@@ -26,8 +26,8 @@ span {
 }
 .product-size {
   position: relative;
-  top: -2.2rem;
-  right: -6.9rem;
+  top: -35px;
+  right: -100px;
   background-color: yellow;
   padding: 0.25rem;
   font-weight: 800;
@@ -64,7 +64,7 @@ span {
 }
 .btn-wishlist {
   position: relative;
-  transform: translate(11.5rem, -12.7rem);
+  transform: translate(170px, -190px);
   font-size: 20px;
   border: none;
   background-color: transparent;
@@ -74,13 +74,4 @@ span {
   background-color: #fff;
   border-radius: 50%;
   font-size: 1.5rem;
-}
-
-@media screen and (max-width: 400px) {
-  .btn-wishlist {
-    transform: translate(11rem, -12rem);
-  }
-  .product-size {
-    right: -6.5rem;
-  }
 }

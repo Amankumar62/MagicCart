@@ -85,7 +85,7 @@ aside {
   .filter-mobile-view-btn {
     display: block;
     position: fixed;
-    top: 4rem;
+    top: 5rem;
     right: 0.5rem;
     z-index: 9999999;
   }

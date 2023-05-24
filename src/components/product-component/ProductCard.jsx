@@ -95,6 +95,7 @@ export const ProductCard = ({ product }) => {
             display: isProductInCart(product._id) && checkLogin() ? "none" : "",
             backgroundImage: !product.availability && "none",
             backgroundColor: !product.availability && "#666",
+            cursor: !product.availability && "default",
           }}
           className="btn-cart"
           disabled={!product.availability}
