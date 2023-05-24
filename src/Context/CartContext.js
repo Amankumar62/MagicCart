@@ -63,8 +63,7 @@ export const CartProvider = ({ children }) => {
         body: requestBody,
       });
       if (response.status === 201) {
-        const data = await response.json();
-        dispatch({ type: "ADD_TO_CART", payload: data.cart });
+        dispatch({ type: "ADD_TO_CART", payload: userProduct });
       }
     } catch (err) {
       console.error(err);
@@ -83,8 +82,7 @@ export const CartProvider = ({ children }) => {
         body: requestBody,
       });
       if (response.status === 201) {
-        const data = await response.json();
-        dispatch({ type: "ADD_TO_WISHLIST", payload: data.wishlist });
+        dispatch({ type: "ADD_TO_WISHLIST", payload: userProduct });
       }
     } catch (err) {
       console.error(err);
@@ -103,8 +101,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        const data = await response.json();
-        dispatch({ type: "ADD_TO_CART", payload: data.cart });
+        dispatch({ type: "ADD_TO_CART", payload: userProduct });
       }
     } catch (err) {
       console.error(err);
@@ -129,8 +126,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        const data = await response.json();
-        dispatch({ type: "ADD_TO_WISHLIST", payload: data.wishlist });
+        dispatch({ type: "ADD_TO_WISHLIST", payload: userProduct });
       }
     } catch (err) {
       console.error(err);

@@ -48,9 +48,19 @@ export const userReducer = (prevState, { type, payload }) => {
 export const cartReducer = (prevState, { type, payload }) => {
   switch (type) {
     case "ADD_TO_CART":
-      return { ...prevState, cart: [...payload] };
+      return {
+        ...prevState,
+        cart: prevState.cart.find(({ _id }) => _id === payload._id)
+          ? prevState.cart.filter(({ _id }) => payload._id !== _id)
+          : [...prevState.cart, { ...payload, qty: 1 }],
+      };
     case "ADD_TO_WISHLIST":
-      return { ...prevState, wishlist: [...payload] };
+      return {
+        ...prevState,
+        wishlist: prevState.wishlist.find(({ _id }) => _id === payload._id)
+          ? prevState.wishlist.filter(({ _id }) => payload._id !== _id)
+          : [...prevState.wishlist, payload],
+      };
     case "RESET_CART_WISHLIST":
       return {
         ...prevState,
@@ -79,7 +89,7 @@ export const cartReducer = (prevState, { type, payload }) => {
       return {
         ...prevState,
         cart: prevState.cart.map((product) =>
-          product._id === payload._id
+          product._id === payload._id && product.qty !== 1
             ? { ...product, qty: product.qty - 1 }
             : product
         ),

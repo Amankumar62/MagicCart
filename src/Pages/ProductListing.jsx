@@ -2,9 +2,12 @@ import { useContext, useState } from "react";
 import "./ProductListing.css";
 import { Filter } from "../components/filter-component/Filter";
 import { ProductCard } from "../components/product-component/ProductCard";
+import { AiFillFilter } from "react-icons/ai";
 import { ProductContext } from "../Context/ProductContext";
 import { CartContext } from "../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";
+import Drawer from "@mui/material/Drawer";
+import Backdrop from "@mui/material/Backdrop";
 export const ProductListing = () => {
   const { products } = useContext(ProductContext);
   const { filter } = useContext(CartContext);
@@ -53,21 +56,34 @@ export const ProductListing = () => {
         <Filter />
       </aside>
 
-      <div className={`filter-mobile-view ${showFilter && `show-filter`} `}>
+      {/* {/* <div className={`filter-mobile-view ${showFilter && `show-filter`} `}> */}
+      {/* <Filter /> */}
+      {/* </div>  */}
+      <Drawer
+        anchor={"bottom"}
+        open={showFilter}
+        onClose={() => setShowFilter(!showFilter)}
+        className="show-filter"
+      >
         <Filter />
-      </div>
+      </Drawer>
 
       {products.length === 0 ? (
-        <TailSpin
-          height="80"
-          width="100%"
-          color="#4fa94d"
-          ariaLabel="tail-spin-loading"
-          radius="1"
-          wrapperStyle={{ margin: "8rem auto" }}
-          wrapperClass=""
-          visible={true}
-        />
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <TailSpin
+            height="80"
+            width="100%"
+            color="#4fa94d"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{ margin: "8rem auto" }}
+            wrapperClass=""
+            visible={true}
+          />
+        </Backdrop>
       ) : (
         <section className="listing">
           <h3 className="listing-heading">
@@ -79,7 +95,7 @@ export const ProductListing = () => {
               className="filter-mobile-view-btn"
               onClick={() => setShowFilter(!showFilter)}
             >
-              filter
+              <AiFillFilter />
             </button>
           </h3>
           {displayProduct.length === 0 ? (

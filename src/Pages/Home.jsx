@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./Home.css";
 import { ProductContext } from "../Context/ProductContext";
 import { useNavigate } from "react-router";
+import Backdrop from "@mui/material/Backdrop";
 import { CartContext } from "../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";
 export const Home = () => {
@@ -14,16 +15,22 @@ export const Home = () => {
     navigate("/products");
   };
   return categories.length === 0 ? (
-    <TailSpin
-      height="80"
-      width="100%"
-      color="#4fa94d"
-      ariaLabel="tail-spin-loading"
-      radius="1"
-      wrapperStyle={{ margin: "8rem auto" }}
-      wrapperClass=""
-      visible={true}
-    />
+    <Backdrop
+      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={true}
+      // onClick={handleClose}
+    >
+      <TailSpin
+        height="80"
+        width="100%"
+        color="#4fa94d"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{ margin: "8rem auto" }}
+        wrapperClass=""
+        visible={true}
+      />
+    </Backdrop>
   ) : (
     <>
       <section className="category">

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./Filter.css";
 import { CartContext } from "../../Context/CartContext";
+import Slider from "@mui/material/Slider";
 export const Filter = () => {
   const {
     addFilterCategory,
@@ -19,12 +20,12 @@ export const Filter = () => {
           <button onClick={(e) => clearFilter(e)}>Clear</button>
         </header>
         <h3>Price</h3>
-        <label className="range-label">
+        {/* <label className="range-label">
           <span>0</span>
           <span>1000</span>
           <span>2000</span>
-        </label>
-        <input
+        </label> */}
+        {/* <input
           type="range"
           min="0"
           max="2000"
@@ -32,6 +33,15 @@ export const Filter = () => {
           onChange={(e) => addFilterRange(e)}
           list="range"
           id="price-range"
+        /> */}
+        <Slider
+          size="medium"
+          value={range}
+          aria-label="Small"
+          valueLabelDisplay="auto"
+          min={0}
+          onChange={(e) => addFilterRange(e)}
+          max={2000}
         />
         <datalist className="filter-datalist" id="range">
           <option value="0">0</option>

@@ -82,12 +82,14 @@ aside {
   .listing-heading {
     text-align: center;
   }
+
   .filter-mobile-view-btn {
     display: block;
     position: fixed;
-    top: 5rem;
+    top: 4.2rem;
     right: 0.5rem;
-    z-index: 9999999;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
   }
   .listing-heading {
     font-size: 0.9rem;
