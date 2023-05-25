@@ -91,13 +91,13 @@ export const ProductListing = () => {
             <span className="product-count">
               ( Showing {displayProduct.length} products )
             </span>
-            <button
-              className="filter-mobile-view-btn"
-              onClick={() => setShowFilter(!showFilter)}
-            >
-              <AiFillFilter />
-            </button>
           </h3>
+          <button
+            className="filter-mobile-view-btn"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <AiFillFilter />
+          </button>
           {displayProduct.length === 0 ? (
             <p className="empty-productlist">No products to display</p>
           ) : (

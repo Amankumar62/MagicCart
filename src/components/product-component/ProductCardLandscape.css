@@ -1,7 +1,5 @@
 .product-card-landscape-image {
   width: 40%;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
 }
 .product-detail-landscape {
   display: flex;
@@ -74,4 +72,11 @@
     rgba(12, 116, 117, 1) 90%
   );
   color: #fff;
+}
+
+@media screen and (max-width: 400px) {
+  .product-detail-landscape {
+    max-width: 300px;
+    overflow-x: hidden;
+  }
 }

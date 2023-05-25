@@ -1,8 +1,8 @@
 .product-image {
   width: inherit;
   height: 60%;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  /* border-top-right-radius: 5px;
+  border-top-left-radius: 5px; */
   cursor: pointer;
 }
 span {
@@ -70,8 +70,7 @@ span {
   background-color: transparent;
 }
 .btn-wishlist-icon {
-  border: 1px solid #fff;
-  background-color: #fff;
+  color: #333;
   border-radius: 50%;
   font-size: 1.5rem;
 }

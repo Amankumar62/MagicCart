@@ -43,7 +43,7 @@ export const Header = () => {
         <input
           className="search-input"
           type="text"
-          placeholder="🔍 Search"
+          placeholder="Search"
           onChange={(e) => debounceSearch(searchHandler, e, 500)}
         />
         <div className="header-links">

@@ -36,9 +36,14 @@ export const ProductCardLandscape = ({ product }) => {
   };
   const authCheckWishlist = (product, place) => {
     toggleWishlist(product);
+    removeFromCart(product);
     isProductInWihlist(product._id)
       ? success(product, place, "Removed")
       : success(product, place);
+  };
+
+  const calculateDiscountPercentage = (price, discountedPrice) => {
+    return (((price - discountedPrice) / price) * 100).toFixed(0);
   };
 
   return (
@@ -54,7 +59,9 @@ export const ProductCardLandscape = ({ product }) => {
           {discounted_price}
           <span>{price}</span>
         </p>
-        <span className="product-detail-landscape-discount">50% off</span>
+        <span className="product-detail-landscape-discount">
+          {calculateDiscountPercentage(price, discounted_price)}% 0ff
+        </span>
         <div className="product-detail-landscape-quantity">
           <label htmlFor="quantity">Quantity:</label>
           <span>
