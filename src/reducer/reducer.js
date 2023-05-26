@@ -61,6 +61,11 @@ export const cartReducer = (prevState, { type, payload }) => {
           ? prevState.wishlist.filter(({ _id }) => payload._id !== _id)
           : [...prevState.wishlist, payload],
       };
+    case "REMOVE_CART":
+      return {
+        ...prevState,
+        cart: prevState.cart.filter(({ _id }) => _id !== payload._id),
+      };
     case "RESET_CART_WISHLIST":
       return {
         ...prevState,

@@ -101,7 +101,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "ADD_TO_CART", payload: userProduct });
+        dispatch({ type: "REMOVE_CART", payload: userProduct });
       }
     } catch (err) {
       console.error(err);

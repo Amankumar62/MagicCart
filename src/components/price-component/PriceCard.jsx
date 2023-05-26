@@ -122,7 +122,7 @@ export const PriceCard = () => {
               {cart.map(({ title, price, qty }) => (
                 <li>
                   <span>
-                    {title}({qty})
+                    {title}(x{qty})
                   </span>
                   <span className="price">{price * qty}</span>
                 </li>
