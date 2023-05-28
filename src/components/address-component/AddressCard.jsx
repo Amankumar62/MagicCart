@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import Backdrop from "@mui/material/Backdrop";
 import "./AddressCard.css";
+import { EditAddressModal } from "./EditAddressModal";
 
 export const AddressCard = ({ hideAddressHandler }) => {
   const { address, selectAddressHandler, removeAddressHandler } =
     useContext(AuthContext);
+  const [editAddress, setEditAddress] = useState(false);
+  const [passingId, setPassingId] = useState();
   return (
     <>
       <h2 className="checkout-address-header">Address Details</h2>
@@ -14,9 +18,25 @@ export const AddressCard = ({ hideAddressHandler }) => {
           <p className="empty-address">No Address Added</p>
         ) : (
           <ul className="checkout-address-ul">
-            {address.map(
-              ({ id, active, name, user_address, pincode, mobile }) => (
+            {address.map((addressItem) => {
+              const { id, active, name, user_address, pincode, mobile } =
+                addressItem;
+              return (
                 <li key={id}>
+                  <div style={{ display: !editAddress && "none" }}>
+                    <Backdrop
+                      sx={{
+                        color: "#fff",
+                        zIndex: (theme) => theme.zIndex.drawer + 1,
+                      }}
+                      open={true}
+                    >
+                      <EditAddressModal
+                        addressItemId={passingId}
+                        setEditAddress={setEditAddress}
+                      />
+                    </Backdrop>
+                  </div>
                   <input
                     type="radio"
                     name="address"
@@ -24,21 +44,32 @@ export const AddressCard = ({ hideAddressHandler }) => {
                     checked={active}
                     onChange={() => selectAddressHandler(id)}
                   />
-                  <label for={id}>
+                  <label htmlFor={id}>
                     <h3>{name}</h3>
                     <p>{user_address}</p>
                     <span>Pincode:{pincode}</span>
                     <span>Mobile:{mobile}</span>
                   </label>
-                  <button
-                    className="btn-remove-address"
-                    onClick={() => removeAddressHandler(id)}
-                  >
-                    Remove
-                  </button>
+                  <section className="btn-section">
+                    <button
+                      className="btn-edit-address"
+                      onClick={() => {
+                        setEditAddress(true);
+                        setPassingId(id);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn-remove-address"
+                      onClick={() => removeAddressHandler(id)}
+                    >
+                      Remove
+                    </button>
+                  </section>
                 </li>
-              )
-            )}
+              );
+            })}
           </ul>
         )}
       </div>

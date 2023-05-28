@@ -11,8 +11,6 @@ nav {
   padding: 10px;
   justify-content: space-around;
   z-index: 999;
-  /* border-bottom-right-radius: 2rem;
-  border-bottom-left-radius: 2rem; */
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
 }
 .header-name {

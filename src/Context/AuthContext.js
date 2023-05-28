@@ -169,6 +169,20 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const updateAddressHandler = (e, addressId) => {
+    e.preventDefault();
+    dispatch({
+      type: "UPDATE_ADDRESS",
+      payload: {
+        id: addressId,
+        name: e.target.elements.editaddressname.value,
+        active: false,
+        mobile: e.target.elements.editmobileno.value,
+        pincode: e.target.elements.editpincode.value,
+        user_address: e.target.elements.editaddress.value,
+      },
+    });
+  };
   const selectAddressHandler = (addId) => {
     dispatch({ type: "SELECT_ADDRESS", payload: addId });
   };
@@ -177,6 +191,9 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "REMOVE_ADDRESS", payload: addId });
   };
 
+  const getAddressData = (addressId) => {
+    return userData.address.find(({ id }) => id === addressId);
+  };
   const orderHistoryHandler = (
     payment_id,
     amount,
@@ -187,6 +204,7 @@ export const AuthProvider = ({ children }) => {
     dispatch({
       type: "ADD_ORDER",
       payload: {
+        orderId: Math.floor(Math.random() * 10000),
         paymentId: payment_id,
         totalAmount: amount,
         orderDate: date,
@@ -196,7 +214,6 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  console.log(userData.orderHistory);
   return (
     <AuthContext.Provider
       value={{
@@ -206,9 +223,11 @@ export const AuthProvider = ({ children }) => {
         logoutHandler,
         signUpHandler,
         addAddressHandler,
+        getAddressData,
         selectAddressHandler,
         removeAddressHandler,
         orderHistoryHandler,
+        updateAddressHandler,
         address: userData.address,
         user: userData.user,
         orderHistory: userData.orderHistory,

@@ -29,7 +29,7 @@ export const PriceCard = () => {
     success(`Payment Successfull!!`);
     removeMultipleFromCart(cart);
     clearCart();
-    navigate("/profile");
+    navigate("/orders");
   };
 
   const error = (msg) => {

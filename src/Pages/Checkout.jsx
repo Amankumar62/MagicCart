@@ -2,10 +2,14 @@ import { useContext, useState } from "react";
 import { AddressCard } from "../components/address-component/AddressCard";
 import { PriceCard } from "../components/price-component/PriceCard";
 import "./Checkout.css";
+import { useNavigate } from "react-router-dom";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 import { AuthContext } from "../Context/AuthContext";
 export const Checkout = () => {
   const [hideAddress, sethideAddress] = useState(true);
-
+  const navigate = useNavigate();
   const { addAddressHandler } = useContext(AuthContext);
   return (
     <>
@@ -21,28 +25,31 @@ export const Checkout = () => {
           className="add-address-form"
         >
           <h3>ADD NEW ADDRESS</h3>
-          <label for="addressname">Name</label>
+          <label htmlFor="addressname">Name</label>
           <input
             id="addressname"
             type="text"
-            placeholder="John walter"
+            placeholder="enter name"
             required={true}
+            pattern="^[a-zA-Z\s]+$"
           />
-          <label for="pincode">Pin Code</label>
+          <label htmlFor="pincode">Pin Code</label>
           <input
             id="pincode"
             type="number"
             required={true}
-            placeholder="123456"
+            pattern="^[0-9]{6}+$"
+            placeholder="enter pin code"
           />
-          <label for="mobileno">mobile</label>
+          <label htmlFor="mobileno">mobile</label>
           <input
             id="mobileno"
             type="number"
             required={true}
-            placeholder="1234567890"
+            pattern="^[0-9]{10}+$"
+            placeholder="enter mobile number"
           />
-          <label for="address">address</label>
+          <label htmlFor="address">address</label>
           <textarea
             col={5}
             id="address"
@@ -61,6 +68,22 @@ export const Checkout = () => {
             Cancel
           </button>
         </form>
+      </div>
+      <div className="stepper-checkout">
+        <h2 className="stepper-checkout-heading">Checkout Page</h2>
+        <Stepper>
+          <Step completed={true}>
+            <StepLabel onClick={() => navigate("/cart")}>
+              Add Items to Cart
+            </StepLabel>
+          </Step>
+          <Step completed={true} onClick={() => navigate("/checkout")}>
+            <StepLabel>Checkout</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Place Order</StepLabel>
+          </Step>
+        </Stepper>
       </div>
       <div className="checkout-container">
         <div className="address-card">

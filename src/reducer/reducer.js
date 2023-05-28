@@ -32,6 +32,14 @@ export const userReducer = (prevState, { type, payload }) => {
         ...prevState,
         address: prevState.address.filter(({ id }) => id !== payload),
       };
+    case "UPDATE_ADDRESS":
+      return {
+        ...prevState,
+        address: [
+          payload,
+          ...prevState.address.filter(({ id }) => id !== payload.id),
+        ],
+      };
     case "ADD_ORDER":
       console.log(payload);
       return {

@@ -14,7 +14,6 @@ export const CartProvider = ({ children }) => {
       price: 2000,
     },
   });
-  console.log(cartData.filter.searchQuery);
   const getCartData = async () => {
     try {
       const token = localStorage.getItem("token");

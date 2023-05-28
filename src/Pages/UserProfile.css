@@ -1,28 +1,34 @@
 .profile-container {
-  display: flex;
   margin: 6rem auto;
-  gap: 1.5rem;
-  width: 80%;
-}
-.profile-details {
   width: 40%;
-  padding: 0.5rem;
+}
+.profile-container h2 {
+  text-align: center;
   text-transform: uppercase;
 }
-.profile-details-flex {
-  margin-top: 1rem;
+.profile-details {
   display: flex;
+  text-transform: uppercase;
   flex-direction: column;
-  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+  border: 1px solid #aaa;
   border-radius: 0.5rem;
   padding: 0.8rem;
+  gap: 1rem;
 }
-.profile-details-flex button {
+.btn-container {
+  display: flex;
+  flex-direction: column;
+}
+.profile-btn {
   padding: 0.5rem;
   border: none;
-  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
+  margin-left: 1rem;
   background-image: radial-gradient(
     circle 860px at 11.8% 33.5%,
     rgba(240, 30, 92, 1) 0%,
@@ -32,11 +38,15 @@
     rgba(253, 102, 2, 1) 100.2%
   );
 }
+.btn-order {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(14, 174, 87, 1) 0%,
+    rgba(12, 116, 117, 1) 90%
+  );
+}
 .profile-details b {
   color: #222;
-}
-.profile-details h2 {
-  text-align: center;
 }
 .profile-address {
   margin-top: 1rem;
@@ -45,65 +55,8 @@
   margin-top: 1rem;
   font-size: 1.4rem;
 }
-.profile-empty-order {
-  height: 70vh;
-  width: inherit;
-}
-.order-history {
-  width: 50%;
-  padding: 0.5rem;
-}
-.order-history-heading {
-  text-align: center;
-  text-transform: uppercase;
-}
-.order-history-listing {
-  list-style: none;
-}
-.order-history-listing-product {
-  list-style: none;
-}
-.order-history-listing-li {
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-.order-price::before {
-  content: "\20B9";
-}
-.order-history-listing-li span {
-  font-size: 1.2rem;
-  color: #222;
-}
-.order-history-listing-li-product {
-  display: flex;
-  height: 150px;
-  margin-bottom: 0.6rem;
-  background-color: #fff;
-}
-.order-history-listing-li-product img {
-  width: 40%;
-}
-.order-history-listing-li-product-detail {
-  display: flex;
-  flex-direction: column;
-}
 @media screen and (max-width: 792px) {
   .profile-container {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-  .profile-details {
-    width: 80%;
-    text-align: center;
-  }
-  .order-history {
-    width: 80%;
-  }
-  .profile-details-flex button {
-    width: 300px;
-    margin: 0 auto;
+    width: 95%;
   }
 }

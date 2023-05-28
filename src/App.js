@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { MockAPI } from "./Pages/MockMan";
 import { NotFound } from "./Pages/NotFound";
+import { OrderHistory } from "./Pages/OrderHistory";
 
 function App() {
   return (
@@ -70,6 +71,14 @@ function App() {
         />
         <Route path="/products/:productId" element={<Product />} />
         <Route path="/mockman" element={<MockAPI />} />
+        <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <OrderHistory />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

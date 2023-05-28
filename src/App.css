@@ -6,6 +6,15 @@
   --item-color: #84cc16;
   --btn-color: #15803d;
 }
+body::-webkit-scrollbar {
+  width: 6px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 6px;
+  border: 1px solid var(--primary-color);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
