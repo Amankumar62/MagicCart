@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
+import { BsFillBagCheckFill } from "react-icons/bs";
 import "./Header.css";
 import { useContext, useRef } from "react";
 import { CartContext } from "../../Context/CartContext";
@@ -9,7 +10,7 @@ import { AuthContext } from "../../Context/AuthContext";
 export const Header = () => {
   const timerId = useRef();
   const { checkLogin } = useContext(AuthContext);
-  const { getCartCount, getWishlistCount, addFilterQuery } =
+  const { getCartCount, getWishlistCount, addFilterQuery, clearCategory } =
     useContext(CartContext);
   const navigate = useNavigate();
   const getActiveWishlist = ({ isActive }) => {
@@ -53,6 +54,7 @@ export const Header = () => {
                 display: checkLogin() ? "" : "none",
               }}
               className="btn-header-login explore"
+              onClick={() => clearCategory()}
             >
               Explore
             </button>
@@ -84,7 +86,7 @@ export const Header = () => {
             ></span>
           </NavLink>
           <NavLink style={getActiveCart} to="/cart" className="link-cart">
-            <AiOutlineShoppingCart />
+            <BsFillBagCheckFill />
             <span
               style={{
                 display: getCartCount() === 0 || !checkLogin() ? "none" : "",

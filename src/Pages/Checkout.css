@@ -1,5 +1,5 @@
 .checkout-container {
-  margin-top: 6rem;
+  margin-top: 1rem;
   display: flex;
   gap: 2rem;
   width: 90%;
@@ -65,6 +65,14 @@
     rgba(14, 174, 87, 1) 0%,
     rgba(12, 116, 117, 1) 90%
   );
+}
+.stepper-checkout {
+  width: 80%;
+  margin: 6rem auto;
+}
+.stepper-checkout-heading {
+  text-align: center;
+  text-transform: uppercase;
 }
 .btn-cancel-address {
   background-image: radial-gradient(

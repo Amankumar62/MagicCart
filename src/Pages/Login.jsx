@@ -64,7 +64,13 @@ export const Login = () => {
         </button>
         <button
           onClick={(e) =>
-            debounceClick(authenticateUser, 300, e, "test@gmail.com", "test")
+            debounceClick(
+              authenticateUser,
+              300,
+              e,
+              "adarshbalika@gmail.com",
+              "adarshbalika"
+            )
           }
           className="login-button"
         >
