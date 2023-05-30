@@ -4,6 +4,15 @@
   flex-direction: column;
   gap: 0.9rem;
   height: 100%;
+  overflow-y: scroll;
+}
+.filter-form::-webkit-scrollbar {
+  width: 6px;
+}
+.filter-form::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 .filter-header {
   display: flex;

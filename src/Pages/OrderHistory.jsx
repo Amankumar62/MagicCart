@@ -41,14 +41,16 @@ export const OrderHistory = () => {
                           onClick={() => navigate(`/products/${_id}`)}
                         >
                           <img src={image} alt={description} />
-                          <div>
-                            <p>{title}</p>
-                            <p>{description}</p>
-                            <span className="order-item-quantity">
-                              Qty:{qty}
-                            </span>
+                          <div className="order-cart-item-div">
+                            <div>
+                              <p>{title}</p>
+                              <p>{description}</p>
+                              <span className="order-item-quantity">
+                                Qty:{qty}
+                              </span>
+                            </div>
+                            <p className="order-cart-item-price">{price}</p>
                           </div>
-                          <p className="order-cart-item-price">{price}</p>
                         </li>
                       )
                     )}

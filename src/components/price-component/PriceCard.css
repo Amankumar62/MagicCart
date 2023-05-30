@@ -7,7 +7,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.discount-price::before {
+  content: "\20B9";
+}
 .price-detail-list li span:first-of-type {
   font-weight: 600;
 }

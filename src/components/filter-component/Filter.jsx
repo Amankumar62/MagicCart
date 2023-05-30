@@ -20,20 +20,6 @@ export const Filter = () => {
           <button onClick={(e) => clearFilter(e)}>Clear</button>
         </header>
         <h3>Price</h3>
-        {/* <label className="range-label">
-          <span>0</span>
-          <span>1000</span>
-          <span>2000</span>
-        </label> */}
-        {/* <input
-          type="range"
-          min="0"
-          max="2000"
-          value={range}
-          onChange={(e) => addFilterRange(e)}
-          list="range"
-          id="price-range"
-        /> */}
         <Slider
           size="medium"
           value={range}
@@ -43,11 +29,11 @@ export const Filter = () => {
           onChange={(e) => addFilterRange(e)}
           max={2000}
         />
-        <datalist className="filter-datalist" id="range">
+        {/* <datalist className="filter-datalist" id="range">
           <option value="0">0</option>
           <option value="1000">1000</option>
           <option value="2000">2000</option>
-        </datalist>
+        </datalist> */}
         <h3>Category</h3>
         <label>
           <input
