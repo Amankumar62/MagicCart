@@ -27,6 +27,7 @@
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
 }
 .add-address-form {
   display: flex;
