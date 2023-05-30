@@ -22,16 +22,19 @@
 .add-address-form-container {
   width: 100%;
   position: fixed;
-  height: 100vh;
+  height: 100%;
   top: 0;
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
 }
 .add-address-form {
   display: flex;
+  justify-content: space-between;
   width: 30rem;
   margin: 6rem;
+  height: 80%;
   gap: 0.7rem;
   flex-direction: column;
   padding: 1rem;

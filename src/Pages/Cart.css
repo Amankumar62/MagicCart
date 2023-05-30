@@ -25,8 +25,8 @@
 }
 .product-card-landscape-list {
   width: 50%;
-  overflow-y: scroll;
-  height: 80vh;
+  /* overflow-y: scroll;
+  height: 80vh; */
 }
 .product-card-landscape-list::-webkit-scrollbar {
   width: 6px;
@@ -48,6 +48,8 @@
   width: 50%;
   padding: 0.9rem;
   height: fit-content;
+  position: sticky;
+  top: 6rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
