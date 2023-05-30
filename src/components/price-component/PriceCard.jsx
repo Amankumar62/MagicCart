@@ -150,7 +150,9 @@ export const PriceCard = () => {
       </section>
       <hr />
       <p className="saving-info">
-        You will save {getTotalDiscount()} on this order
+        You will save{" "}
+        <span className="discount-price">{getTotalDiscount()}</span> on this
+        order
       </p>
       <button
         style={{ display: location?.pathname === "/checkout" ? "" : "none" }}

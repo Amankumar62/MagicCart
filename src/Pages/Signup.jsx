@@ -69,9 +69,9 @@ export const Signup = () => {
         <input
           id="email"
           className="signup-input"
-          type="text"
+          type="email"
           placeholder="example@gmail.com"
-          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
           required={true}
         />
         <label for="password" className="signup-label">

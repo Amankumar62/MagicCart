@@ -12,8 +12,8 @@ export const AddressCard = ({ hideAddressHandler }) => {
   const [passingId, setPassingId] = useState();
   return (
     <>
-      <h2 className="checkout-address-header">Address Details</h2>
       <div>
+        <h2 className="checkout-address-header">Address Details</h2>
         {address.length === 0 ? (
           <p className="empty-address">No Address Added</p>
         ) : (

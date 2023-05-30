@@ -42,8 +42,10 @@ export const ProductListing = () => {
       filteredSorted = filteredPrice.sort(sortOrder(sortby));
     }
 
-    let filteredSearch = filteredSorted.filter(({ title }) =>
-      title.toLowerCase().includes(searchQuery.toLowerCase().trim())
+    let filteredSearch = filteredSorted.filter(
+      ({ title, description }) =>
+        title.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+        description.toLowerCase().includes(searchQuery.toLowerCase().trim())
     );
     return filteredSearch;
   };
