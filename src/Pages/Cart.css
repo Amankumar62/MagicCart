@@ -25,6 +25,16 @@
 }
 .product-card-landscape-list {
   width: 50%;
+  overflow-y: scroll;
+  height: 80vh;
+}
+.product-card-landscape-list::-webkit-scrollbar {
+  width: 6px;
+}
+.product-card-landscape-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .product-card-landscape-list li {
