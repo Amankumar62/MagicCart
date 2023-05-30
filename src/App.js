@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { ProductListing } from "./Pages/ProductListing";
 import { Cart } from "./Pages/Cart";
@@ -16,8 +16,14 @@ import "./App.css";
 import { MockAPI } from "./Pages/MockMan";
 import { NotFound } from "./Pages/NotFound";
 import { OrderHistory } from "./Pages/OrderHistory";
+import { useEffect } from "react";
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div className="App">
       <Header />
