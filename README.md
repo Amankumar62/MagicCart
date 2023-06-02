@@ -38,9 +38,5 @@ $ npm start
 - Razorpay payment gateway
 
 Magiccart - Ecommerce - Watch Video
-
-
-
-https://github.com/Amankumar62/MagicCart/assets/35631140/b4f56c25-2de4-40d3-9425-d6a24acca705
-
+https://github.com/Amankumar62/MagicCart/assets/35631140/858f6844-7e5f-49ee-9212-1f724b9030fa
 
