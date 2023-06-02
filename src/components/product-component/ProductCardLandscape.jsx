@@ -92,8 +92,10 @@ export const ProductCardLandscape = ({ product }) => {
           onClick={() => authCheckWishlist(product, "wishlist")}
           style={{
             backgroundColor: isProductInWihlist(product._id) ? "#666" : "",
+            backgroundImage: isProductInWihlist(product._id) ? "none" : "",
           }}
           className="product-detail-landscape-btn-wishlist"
+          disabled={isProductInWihlist(product._id)}
         >
           {isProductInWihlist(product._id)
             ? "Added to Wishlist"

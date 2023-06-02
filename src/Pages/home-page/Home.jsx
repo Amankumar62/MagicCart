@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import "./Home.css";
-import { ProductContext } from "../Context/ProductContext";
-import { Footer } from "../components/footer-component/Footer";
+import { ProductContext } from "../../Context/ProductContext";
+import { Footer } from "../../components/footer-component/Footer";
 import { useNavigate } from "react-router";
 import { TbTruckReturn } from "react-icons/tb";
 import { FaHandHoldingHeart } from "react-icons/fa";
 import { GrStatusGood } from "react-icons/gr";
 import Backdrop from "@mui/material/Backdrop";
-import { CartContext } from "../Context/CartContext";
+import { CartContext } from "../../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";
 export const Home = () => {
   const { categories } = useContext(ProductContext);

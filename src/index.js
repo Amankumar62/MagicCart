@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import "./index.css";
 import App from "./App";
 import { ProductProvider } from "./Context/ProductContext";
 import { AuthProvider } from "./Context/AuthContext";
@@ -17,11 +16,11 @@ root.render(
   <React.StrictMode>
     <Router>
       <ProductProvider>
-        <CartProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <CartProvider>
             <App />
-          </AuthProvider>
-        </CartProvider>
+          </CartProvider>
+        </AuthProvider>
       </ProductProvider>
     </Router>
   </React.StrictMode>

@@ -1,5 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
-import { CartContext } from "./CartContext";
+import { createContext, useReducer } from "react";
 import { userReducer } from "../reducer/reducer";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -24,7 +23,6 @@ export const AuthProvider = ({ children }) => {
     orderHistory: [],
     token: "",
   });
-  const { resetCartContext } = useContext(CartContext);
   const setLoginSuccess = (data) => {
     console.log(data);
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
@@ -44,7 +42,6 @@ export const AuthProvider = ({ children }) => {
       console.log(response.status);
       if (response.status === 200) {
         const responseData = await response.json();
-        resetCartContext();
         setLoginSuccess(responseData);
         localStorage.setItem("token", responseData.encodedToken);
         toast.success(
@@ -111,7 +108,6 @@ export const AuthProvider = ({ children }) => {
       console.log(response.status);
       if (response.status === 201) {
         const responseData = await response.json();
-        resetCartContext();
         localStorage.setItem("token", responseData.encodedToken);
         navigate("/login");
         toast.success("User created. Please login to continue", {
@@ -231,6 +227,7 @@ export const AuthProvider = ({ children }) => {
         address: userData.address,
         user: userData.user,
         orderHistory: userData.orderHistory,
+        isLoggedIn: userData.isLoggedIn,
       }}
     >
       {children}

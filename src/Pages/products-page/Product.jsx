@@ -2,10 +2,10 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import "./Product.css";
 import { useContext } from "react";
 import { BsCartFill } from "react-icons/bs";
-import { ProductContext } from "../Context/ProductContext";
-import { CartContext } from "../Context/CartContext";
+import { ProductContext } from "../../Context/ProductContext";
+import { CartContext } from "../../Context/CartContext";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 export const Product = () => {
   const { productId } = useParams();
   const { getProductDetail } = useContext(ProductContext);
@@ -49,9 +49,6 @@ export const Product = () => {
   const authCheckCart = (product, place) => {
     if (checkLogin()) {
       addToCart(product);
-      if (isProductInWihlist(product._id)) {
-        toggleWishlist(product);
-      }
       success(product, place);
     } else {
       navigate("/login", { state: location });

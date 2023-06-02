@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
   display: flex;
   flex-direction: column;
   width: 360px;
@@ -7,21 +7,20 @@
   padding: 1.2rem;
   gap: 0.6rem;
 }
-.login-heading {
+
+.signup-heading {
   text-align: center;
 }
-
-.login-label {
+.signup-label {
   font-weight: 600;
   color: #222;
 }
-
-.login-input {
+.signup-input {
   padding: 0.4rem;
   border: 1px solid #999;
   font-size: medium;
 }
-.login-button {
+.signup-button {
   padding: 0.3rem;
   border: none;
   margin-top: 0.5rem;
@@ -35,12 +34,19 @@
   color: #fff;
   font-size: 1rem;
 }
-.login-link {
+.confirm-password {
+  margin-top: -1.5rem;
+}
+.signup-link {
   font-size: 1rem;
   text-align: center;
   color: #666;
   margin-top: 0.5rem;
 }
-.login-link:hover {
+.signup-link:hover {
   color: #000;
+}
+.match-password {
+  color: red;
+  padding-bottom: 1rem;
 }

@@ -9,6 +9,9 @@
 body::-webkit-scrollbar {
   width: 6px;
 }
+button:disabled {
+  cursor: default;
+}
 body::-webkit-scrollbar-thumb {
   background-color: var(--primary-color);
   border-radius: 6px;

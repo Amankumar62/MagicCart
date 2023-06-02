@@ -1,9 +1,16 @@
 import { useContext } from "react";
 import "./UserProfile.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
+import { CartContext } from "../../Context/CartContext";
 export const UserProfile = () => {
   const { user, logoutHandler } = useContext(AuthContext);
+  const { resetCartContext } = useContext(CartContext);
+
+  const abstractLogoutHandler = () => {
+    resetCartContext();
+    logoutHandler();
+  };
   const navigate = useNavigate();
   return (
     <>
@@ -27,7 +34,16 @@ export const UserProfile = () => {
             >
               orders
             </button>
-            <button className="profile-btn" onClick={() => logoutHandler()}>
+            <button
+              className="profile-btn btn-order"
+              onClick={() => navigate("/address")}
+            >
+              Address
+            </button>
+            <button
+              className="profile-btn"
+              onClick={() => abstractLogoutHandler()}
+            >
               Logout
             </button>
           </div>

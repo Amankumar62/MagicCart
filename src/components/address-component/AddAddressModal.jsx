@@ -1,64 +1,59 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 
-export const EditAddressModal = ({ addressItemId, setEditAddress }) => {
-  const { updateAddressHandler, getAddressData } = useContext(AuthContext);
-  const addressItem = getAddressData(addressItemId);
+export const AddAddressModal = ({ sethideAddress }) => {
+  const { addAddressHandler } = useContext(AuthContext);
   return (
     <>
       <form
         onSubmit={(e) => {
-          updateAddressHandler(e, addressItemId);
-          setEditAddress(false);
+          addAddressHandler(e);
+          sethideAddress(true);
         }}
         className="add-address-form"
       >
-        <h3>EDIT ADDRESS</h3>
-        <label htmlFor="editaddressname">Name</label>
+        <h3>ADD NEW ADDRESS</h3>
+        <label htmlFor="addressname">Name</label>
         <input
-          id="editaddressname"
+          id="addressname"
           type="text"
-          defaultValue={addressItem?.name}
           placeholder="enter name"
           required={true}
-          pattern="^[A-Za-z\s]+$"
+          pattern="^[a-zA-Z\s]+$"
         />
-        <label htmlFor="editpincode">Pin Code</label>
+        <label htmlFor="pincode">Pin Code</label>
         <input
-          id="editpincode"
+          id="pincode"
           type="number"
-          defaultValue={addressItem?.pincode}
           required={true}
           min="100000"
           max="999999"
           placeholder="enter pin code"
         />
-        <label htmlFor="editmobileno">mobile</label>
+        <label htmlFor="mobileno">mobile</label>
         <input
-          id="editmobileno"
+          id="mobileno"
           type="number"
+          required={true}
           min="1000000000"
           max="9999999999"
-          defaultValue={addressItem?.mobile}
-          required={true}
           placeholder="enter mobile number"
         />
-        <label htmlFor="editaddress">address</label>
+        <label htmlFor="address">address</label>
         <textarea
           col={5}
-          id="editaddress"
+          id="address"
           type="text"
-          defaultValue={addressItem?.user_address}
           required={true}
           placeholder="New Delivery Address Here"
         ></textarea>
         <button type="submit" className="btn-add-address">
-          Update
+          Add Address
         </button>
         <button
           type="button"
           className="btn-cancel-address"
-          onClick={() => setEditAddress(false)}
+          onClick={() => sethideAddress(true)}
         >
           Cancel
         </button>

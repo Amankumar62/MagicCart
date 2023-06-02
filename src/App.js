@@ -1,22 +1,23 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Home } from "./Pages/Home";
-import { ProductListing } from "./Pages/ProductListing";
-import { Cart } from "./Pages/Cart";
-import { Wishlist } from "./Pages/Wishlist";
-import { Login } from "./Pages/Login";
-import { Signup } from "./Pages/Signup";
-import { Checkout } from "./Pages/Checkout";
+import { Home } from "./Pages/home-page/Home";
+import { ProductListing } from "./Pages/product-listing-page/ProductListing";
+import { Cart } from "./Pages/cart-page/Cart";
+import { Wishlist } from "./Pages/wishlist-page/Wishlist";
+import { Login } from "./Pages/login-page/Login";
+import { Signup } from "./Pages/signup-page/Signup";
+import { Checkout } from "./Pages/checkout-page/Checkout";
 import { Header } from "./components/header-component/Header";
-import { Product } from "./Pages/Product";
-import { UserProfile } from "./Pages/UserProfile";
+import { Product } from "./Pages/products-page/Product";
+import { UserProfile } from "./Pages/userprofile-page/UserProfile";
 import { RequireAuth } from "./auth/RequiresAuth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { MockAPI } from "./Pages/MockMan";
-import { NotFound } from "./Pages/NotFound";
-import { OrderHistory } from "./Pages/OrderHistory";
+import { MockAPI } from "./Pages/mockbee-pages/MockMan";
+import { NotFound } from "./Pages/notfound-page/NotFound";
+import { OrderHistory } from "./Pages/order-page/OrderHistory";
 import { useEffect } from "react";
+import { AddressPage } from "./Pages/userprofile-page/AddressPage";
 
 function App() {
   const { pathname } = useLocation();
@@ -82,6 +83,14 @@ function App() {
           element={
             <RequireAuth>
               <OrderHistory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/address"
+          element={
+            <RequireAuth>
+              <AddressPage />
             </RequireAuth>
           }
         />
