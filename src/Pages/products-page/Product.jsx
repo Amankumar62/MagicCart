@@ -49,9 +49,6 @@ export const Product = () => {
   const authCheckCart = (product, place) => {
     if (checkLogin()) {
       addToCart(product);
-      if (isProductInWihlist(product._id)) {
-        toggleWishlist(product);
-      }
       success(product, place);
     } else {
       navigate("/login", { state: location });
