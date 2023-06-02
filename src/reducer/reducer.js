@@ -55,6 +55,10 @@ export const userReducer = (prevState, { type, payload }) => {
 
 export const cartReducer = (prevState, { type, payload }) => {
   switch (type) {
+    case "SET_CART":
+      return { ...prevState, cart: [...payload] };
+    case "SET_WISHLIST":
+      return { ...prevState, wishlist: [...payload] };
     case "ADD_TO_CART":
       return {
         ...prevState,

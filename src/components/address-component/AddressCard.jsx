@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import Backdrop from "@mui/material/Backdrop";
 import "./AddressCard.css";
 import { EditAddressModal } from "./EditAddressModal";
@@ -74,13 +73,13 @@ export const AddressCard = ({ hideAddressHandler }) => {
         )}
       </div>
 
-      <button
+      {/* <button
         className="checkout-add-address"
         onClick={() => hideAddressHandler(false)}
       >
         <AiOutlinePlusCircle />
         Add new Address
-      </button>
+      </button> */}
     </>
   );
 };

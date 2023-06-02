@@ -50,26 +50,12 @@ export const Header = () => {
         <div className="header-links">
           <Link to="/products">
             <button
-              style={{
-                display: checkLogin() ? "" : "none",
-              }}
               className="btn-header-login explore"
               onClick={() => clearCategory()}
             >
               Explore
             </button>
           </Link>
-          <Link to="/login">
-            <button
-              style={{
-                display: checkLogin() ? "none" : "",
-              }}
-              className="btn-header-login"
-            >
-              Login
-            </button>
-          </Link>
-
           <NavLink
             style={getActiveWishlist}
             to="/wishlist"

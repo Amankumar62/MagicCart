@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import "./OrderHistory.css";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router";
-import empty from "../animation/empty.json";
+import empty from "../../animation/empty.json";
 export const OrderHistory = () => {
   const { orderHistory } = useContext(AuthContext);
   const navigate = useNavigate();

@@ -1,7 +1,8 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export const Login = () => {
   const timerId = useRef();
@@ -15,6 +16,7 @@ export const Login = () => {
       navigate("/");
     }
   }
+  const [isHidden, setIsHidden] = useState(true);
 
   const debounceClick = (callback, delay, e, ...args) => {
     clearTimeout(timerId.current);
@@ -53,12 +55,15 @@ export const Login = () => {
         </label>
         <input
           className="login-input"
-          type="password"
+          type={isHidden ? "password" : "text"}
           value={user?.password}
           placeholder="**********"
           id="userPassword"
           required={true}
         />
+        <span className="show-password" onClick={() => setIsHidden(!isHidden)}>
+          {isHidden ? <AiFillEyeInvisible /> : <AiFillEye />}
+        </span>
         <button type="submit" className="login-button">
           Login
         </button>

@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./ProductListing.css";
-import { Filter } from "../components/filter-component/Filter";
-import { ProductCard } from "../components/product-component/ProductCard";
+import { Filter } from "../../components/filter-component/Filter";
+import { ProductCard } from "../../components/product-component/ProductCard";
 import { AiFillFilter } from "react-icons/ai";
-import { ProductContext } from "../Context/ProductContext";
-import { CartContext } from "../Context/CartContext";
+import { ProductContext } from "../../Context/ProductContext";
+import { CartContext } from "../../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";
 import Drawer from "@mui/material/Drawer";
 import Backdrop from "@mui/material/Backdrop";
@@ -13,6 +13,8 @@ export const ProductListing = () => {
   const { filter } = useContext(CartContext);
 
   const [showFilter, setShowFilter] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+
   const sortOrder = (order) => {
     if (order === "LTH")
       return (a, b) => a.discounted_price - b.discounted_price;
@@ -51,16 +53,18 @@ export const ProductListing = () => {
   };
 
   const displayProduct = applyFilter();
+  useEffect(() => {
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+    }, 1000);
+  }, []);
 
   return (
     <>
       <aside>
         <Filter />
       </aside>
-
-      {/* {/* <div className={`filter-mobile-view ${showFilter && `show-filter`} `}> */}
-      {/* <Filter /> */}
-      {/* </div>  */}
       <Drawer
         anchor={"bottom"}
         open={showFilter}
@@ -70,7 +74,7 @@ export const ProductListing = () => {
         <Filter />
       </Drawer>
 
-      {products.length === 0 ? (
+      {showLoader ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={true}

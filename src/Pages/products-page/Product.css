@@ -67,7 +67,6 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #fff;
-  /* background-color: var(--ternary-color); */
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
     rgba(14, 174, 87, 1) 0%,

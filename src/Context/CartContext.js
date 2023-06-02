@@ -1,5 +1,6 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { cartReducer } from "../reducer/reducer";
+import { AuthContext } from "./AuthContext";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -14,9 +15,13 @@ export const CartProvider = ({ children }) => {
       price: 2000,
     },
   });
+
+  const { isLoggedIn } = useContext(AuthContext);
+
   const getCartData = async () => {
     try {
       const token = localStorage.getItem("token");
+
       const auth = {
         authorization: token,
       };
@@ -32,16 +37,16 @@ export const CartProvider = ({ children }) => {
           headers: auth,
         })
       ).json();
-      if (responseCart.status === 200) {
+      if (responseCart?.cart) {
         dispatch({
-          type: "ADD_TO_CART",
-          payload: responseCart.cart,
+          type: "SET_CART",
+          payload: responseCart?.cart,
         });
       }
-      if (responseWishlist.status === 200) {
+      if (responseWishlist?.wishlist) {
         dispatch({
-          type: "ADD_TO_WISHLIST",
-          payload: responseWishlist.wishlist,
+          type: "SET_WISHLIST",
+          payload: responseWishlist?.wishlist,
         });
       }
     } catch (err) {
@@ -232,7 +237,7 @@ export const CartProvider = ({ children }) => {
   };
   useEffect(() => {
     getCartData();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <CartContext.Provider
