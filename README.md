@@ -41,4 +41,6 @@ Magiccart - Ecommerce - Watch Video
 
 
 
+https://github.com/Amankumar62/MagicCart/assets/35631140/b4f56c25-2de4-40d3-9425-d6a24acca705
+
 
