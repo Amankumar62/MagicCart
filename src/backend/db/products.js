@@ -290,4 +290,18 @@ export const products = [
     delivery_time: "5",
     rating: "1.5",
   },
+  {
+    _id: uuid(),
+    title: "HIGHLANDER",
+    description: "Men Olive Green Solid Slim Fit Casual Shirt",
+    image:
+      "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/19771884/2022/10/28/d62de621-d236-4a68-88f9-5b899d7369651666942676149-HIGHLANDER-Men-Olive-Green-Solid-Slim-Fit-Casual-Shirt-96516-1.jpg",
+    price: "1999",
+    discounted_price: "439",
+    category_name: "Men",
+    size: "M",
+    availability: true,
+    delivery_time: "5",
+    rating: "4.5",
+  },
 ];
