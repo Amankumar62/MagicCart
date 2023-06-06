@@ -7,6 +7,9 @@
 }
 .product-in-image:hover {
   transform: scale(1.1) translate(-1rem);
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 .product-in-container {
   margin: 10rem auto;
@@ -19,6 +22,7 @@
 .product-in-detail {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
 }
 .product-in-description {
