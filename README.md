@@ -37,3 +37,10 @@ $ npm start
 - Vanilla CSS
 - Razorpay payment gateway
 
+## **Magiccart - Ecommerce - Watch Video**
+
+
+
+
+https://github.com/Amankumar62/MagicCart/assets/35631140/4b958d64-d7b4-4155-b5cf-fa0dacb3f124
+
